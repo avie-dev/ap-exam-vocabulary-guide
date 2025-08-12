@@ -627,34 +627,46 @@ This guide provides comprehensive vocabulary and concept explanations in table f
         const items = [];
         let category = '';
         let sub = '';
+
+        const isSep = (s) => {
+          const t = (s || '').trim();
+          if (!t.includes('-')) return false;
+          // Only pipes, colons, dashes, and whitespace allowed
+          return t.replace(/[|:\s\-]/g, '') === '';
+        };
+
         for (let i = 0; i < lines.length; i++) {
-          const line = lines[i];
+          const raw = lines[i] ?? '';
+          const line = raw.trim();
           if (line.startsWith('## ')) { category = normalizeSpaces(line.replace(/^##\s+/, '')); sub = ''; continue; }
           if (line.startsWith('### ')) { sub = normalizeSpaces(line.replace(/^###\s+/, '')); continue; }
 
-          // Table detection: header row followed by separator row
-          if (line.trim().startsWith('|') && i + 1 < lines.length && lines[i+1].match(/^\|[-\s:]+\|$/)) {
+          // Detect a markdown table by header followed by a separator row
+          if (line.includes('|') && i + 1 < lines.length && isSep(lines[i + 1])) {
+            // Build header map
             const header = line.split('|').map(c => c.trim()).filter(Boolean);
             const headerMap = {};
             header.forEach((h, idx) => headerMap[toLower(h)] = idx);
             const idxEn = headerMap['english term'] ?? headerMap['english'] ?? 0;
             const idxJa = headerMap['japanese'] ?? 1;
             const idxRo = headerMap['roomaji'] ?? headerMap['romanji'] ?? 2;
-            const idxDesc = header.length - 1; // last column is description/details
+            const idxDesc = header.length - 1; // last column assumed description/details
 
-            // advance past separator row
+            // Advance to first data row (skip header + separator)
             i += 2;
             for (; i < lines.length; i++) {
-              const row = lines[i];
-              if (!row.trim().startsWith('|')) { i--; break; }
+              const rowRaw = lines[i] ?? '';
+              const row = rowRaw.trim();
+              if (!row.includes('|') || row.startsWith('###') || row.startsWith('##')) { i--; break; }
               const cols = row.split('|').map(c => c.trim());
-              if (cols.length < 5) continue; // leading and trailing empties + 3+ data
-              const cells = cols.filter(Boolean);
+              // keep non-empty cells only
+              const cells = cols.filter(c => c.length > 0);
+              if (cells.length < 3) continue;
+
               const english = normalizeSpaces(cells[idxEn] || '');
               const japanese = normalizeSpaces(cells[idxJa] || '');
               const roomaji = normalizeSpaces(cells[idxRo] || '');
               let description = normalizeSpaces(cells[idxDesc] || '');
-              // strip bold markers and trailing pipes
               description = description.replace(/^\*\*|\*\*$/g, '');
 
               if (!english && !japanese && !roomaji && !description) continue;
@@ -855,6 +867,10 @@ This guide provides comprehensive vocabulary and concept explanations in table f
         loadFavorites();
         const md = els.md.textContent;
         state.all = parseMarkdown(md);
+        if (!state.all.length) {
+          // Fallback: show a friendly message in results if parsing failed
+          els.results.innerHTML = '<div class="card">Failed to parse vocabulary tables from embedded guide. Please ensure the page fully loaded, then refresh.</div>';
+        }
         buildCategories(state.all);
         applyFilters();
         attachEvents();
