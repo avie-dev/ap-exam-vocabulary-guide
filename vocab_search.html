@@ -160,7 +160,6 @@
     <header>
       <div class="title">
         <h1>📘 AP Exam IT Vocabulary – AM Session</h1>
-        <span class="tag">Single File ✨ </span>
       </div>
       <div class="subtitle">Search English, Japanese, Roomaji, and descriptions. Bookmark favorites, export results, and practice with random terms.</div>
 
@@ -686,7 +685,6 @@ This guide provides comprehensive vocabulary and concept explanations in table f
               const japanese = normalizeSpaces(cells[idxJa] || '');
               const roomaji = normalizeSpaces(cells[idxRo] || '');
               let description = normalizeSpaces(cells[idxDesc] || '');
-              description = description.replace(/^\*\*|\*\*$/g, '');
 
               if (!english && !japanese && !roomaji && !description) continue;
               const cat = sub ? `${category} — ${sub}` : category;
@@ -741,17 +739,15 @@ This guide provides comprehensive vocabulary and concept explanations in table f
         return html;
       }
 
-      function formatDescription(text, tokens) {
+      // Convert markdown **bold** to <strong> and insert a line break before each bold segment
+      function formatDescWithBoldBreaks(text, tokens) {
         if (!text) return '';
-        // Insert a line break before markdown bold segments that follow a sentence end
-        let html = text.replace(/\.\s+\*\*/g, '.<br/>**');
-        // Convert markdown bold (**...**) to <strong>…</strong>
-        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-        // Optional: normalize multiple spaces
-        html = html.replace(/\s{2,}/g, ' ');
-        // Then apply token highlighting
-        html = highlight(html, tokens);
-        return html;
+        // Add a line break before EVERY bold segment
+        let html = text.replace(/\*\*(.+?)\*\*/g, '<br/><strong>$1</strong>');
+        // Remove leading break if it appears at the very start
+        html = html.replace(/^<br\/>/, '');
+        // Finally, apply search term highlighting
+        return highlight(html, tokens);
       }
 
       function pastelFor(text) {
@@ -792,7 +788,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
             </div>
             <div class="term-ja">${highlight(it.japanese, tokens)}</div>
             <div class="term-ro">${highlight(it.roomaji, tokens)}</div>
-            <div class="desc">${formatDescription(it.description, tokens)}</div>
+            <div class="desc">${formatDescWithBoldBreaks(it.description, tokens)}</div>
             <div class="card-actions">
               <button class="fav-btn" data-id="${it.id}" data-active="${state.favorites.has(it.id)}">${state.favorites.has(it.id) ? '⭐' : '☆'} Favorite</button>
               <span style="color:var(--muted);font-size:12px;">ID: ${it.id}</span>
