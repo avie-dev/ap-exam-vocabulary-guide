@@ -20,7 +20,7 @@ The AP exam is entirely in Japanese and covers advanced IT topics with complex t
 
 | Exam Session | Date | Study Guide | Status |
 |--------------|------|-------------|---------|
-| [Spring 2025 (令和7年度 春期)](./guides/ap-2025-spring.md) | April 2025 | Complete Study Guide | ✅ Available |
+| [Spring 2025 AM (令和7年度 春期 午前)](./guides/am/ap-2025-spring.md) | April 2025 | Complete AM Study Guide | ✅ Available |
 | Fall 2025 (令和7年度 秋期) | October 2025 | Study Guide | 📝 Planned |
 
 ### Previous Years Coverage
@@ -39,14 +39,22 @@ ap-exam-vocabulary-guide/
 ├── TABLE_OF_CONTENTS.md        # Complete exam index
 ├── CURSOR_RULES.md             # Repository guidelines
 ├── guides/                     # Individual exam guides
-│   ├── ap-2025-spring.md       # ✅ Complete
-│   ├── ap-2024-fall.md         # 📝 Planned
-│   └── [20 more exam files]    # 2015-2024 coverage
+│   ├── am/                     # Morning session guides
+│   │   ├── ap-2025-spring.md   # ✅ Complete
+│   │   ├── ap-2024-fall.md     # 📝 Planned
+│   │   └── [20 more AM files]  # 2015-2024 coverage
+│   └── pm/                     # Afternoon session guides
+│       ├── ap-2025-spring.md   # 📝 Planned
+│       ├── ap-2024-fall.md     # 📝 Planned
+│       └── [20 more PM files]  # 2015-2024 coverage
 ├── vocabulary/                 # Vocabulary support
-│   ├── master-vocabulary.md    # Comprehensive term list
+│   ├── am-vocabulary.md        # AM-specific terminology
+│   ├── pm-vocabulary.md        # PM-specific terminology
 │   ├── kanji-by-topic.md      # Topic-organized kanji
 │   └── common-patterns.md     # Question patterns
 └── resources/                  # Additional resources
+    ├── am-strategies.md       # AM test-taking strategies
+    ├── pm-strategies.md       # PM essay/case study strategies
     ├── study-methodology.md   # How to use guides
     ├── progress-tracking.md   # Study progress tools
     └── official-sources.md    # IPA resources
@@ -95,11 +103,21 @@ ap-exam-vocabulary-guide/
 ## 📅 AP Exam Information
 
 ### Exam Format
+**Morning Session (AM - 午前)**
 - **Duration**: 150 minutes (2.5 hours)
 - **Questions**: 80 multiple choice questions
+- **Content**: Technical knowledge, algorithms, mathematics
 - **Language**: Japanese only
 - **Passing Score**: 60% (48+ correct answers)
-- **Format**: Paper-based examination
+
+**Afternoon Session (PM - 午後)**
+- **Duration**: 150 minutes (2.5 hours)
+- **Questions**: Case studies and essay questions
+- **Content**: Applied knowledge, system design, project management
+- **Language**: Japanese only
+- **Passing Score**: 60% (minimum score required)
+
+**Format**: Paper-based examination for both sessions
 
 ### Exam Schedule 2025
 - **Spring Registration**: January 15 - February 28, 2025
@@ -199,9 +217,9 @@ This is an open-source study guide! Contributions welcome:
 
 ## 📊 Repository Statistics
 
-- **Total Exam Coverage**: 22 exams (2015-2025)
-- **Completed Guides**: 1 (AP Spring 2025)
-- **In Progress**: 21 guides planned
+- **Total Exam Coverage**: 44 exams (22 AM + 22 PM sessions, 2015-2025)
+- **Completed Guides**: 1 (AP Spring 2025 AM)
+- **In Progress**: 43 guides planned (21 AM + 22 PM)
 - **Languages**: English explanations with Japanese terminology
 - **Target Completion**: All guides by end of 2025
 
@@ -214,7 +232,7 @@ This is an open-source study guide! Contributions welcome:
 - **Email maintainers** for urgent issues
 
 ### Study Groups
-Looking for study partners? Check our [Community Page](./resources/community.md) for:
+Looking for study partners? Check our Community Page (coming soon) for:
 - Local study groups by city
 - Online study sessions
 - Language exchange partners
