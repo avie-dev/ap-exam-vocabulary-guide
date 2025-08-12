@@ -223,6 +223,52 @@ This is an open-source study guide! Contributions welcome:
 ### Getting Help
 - **Create an issue** for content questions
 
+## 🔍 Vocabulary System (Modular, 2015–2025 AM/PM)
+
+The modular vocabulary search app lives under `vocabulary-system/`. It loads exam data on-demand (AM/PM, 2015–2025), supports combined filters (exam, session, years, category), and provides fast search across English, Japanese, Roomaji, and descriptions.
+
+### Run locally
+
+Because the app fetches JSON files, use a simple static server:
+
+```bash
+cd vocabulary-system
+python3 -m http.server 8080
+# Open http://localhost:8080
+```
+
+### Features
+- Exam/session/year range filters with breadcrumbs
+- Debounced search (English, Japanese, Roomaji, description)
+- Category filtering, favorites (localStorage), CSV export
+- Pagination and statistics ("Showing X terms from Y exams")
+- Cached JSON loading (index + selected exam files) for speed
+
+### Structure
+```
+vocabulary-system/
+├── index.html                 # Main search page
+├── css/styles.css             # Styling
+├── js/
+│   ├── app.js                # App state, UI, rendering
+│   ├── search.js             # Search index, debouncing
+│   └── data-loader.js        # Master index + exam loaders (cached)
+└── data/
+    ├── vocabulary-index.json # Master list of exams
+    └── am/ap-2025-spring.json# Example dataset (163 terms parsed)
+```
+
+### Adding more exams
+1. Convert a markdown guide to JSON:
+   ```bash
+   node scripts/convert-md-to-json.js guides/am/ap-YYYY-<spring|fall>.md \
+     vocabulary-system/data/am/ap-YYYY-<spring|fall>.json
+   ```
+2. Add/update the exam entry in `vocabulary-system/data/vocabulary-index.json`.
+3. Reload the app; the new exam appears in filters and search.
+
+Tip: The converter also updates `termCount` in the index automatically.
+
 ## 🏆 Success Stories
 
 *We're just getting started! Share your success story by creating an issue or contributing to the community section.*
