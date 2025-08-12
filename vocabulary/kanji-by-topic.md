@@ -1,0 +1,1 @@
+# Essential Kanji for IT
