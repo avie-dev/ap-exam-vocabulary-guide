@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AP Exam IT Vocabulary Search (AM) – Offline</title>
+  <style>
+    :root {
+      --bg: #0f172a;            /* slate-900 */
+      --bg-elev: #111827;       /* gray-900 */
+      --card: #111827;
+      --fg: #e5e7eb;            /* gray-200 */
+      --muted: #9ca3af;         /* gray-400 */
+      --accent: #22c55e;        /* green-500 */
+      --accent-2: #60a5fa;      /* blue-400 */
+      --danger: #f87171;        /* red-400 */
+      --border: #1f2937;        /* gray-800 */
+      --mark-bg: #fde68a;       /* amber-300 */
+      --mark-fg: #0b1220;
+    }
+    html, body {
+      height: 100%;
+      background: linear-gradient(180deg, var(--bg), #0b1120);
+      color: var(--fg);
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', Meiryo, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    header {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .title {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .title h1 {
+      font-size: clamp(20px, 4vw, 28px);
+      margin: 0;
+      font-weight: 650;
+      letter-spacing: 0.2px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    @media (min-width: 760px) {
+      .controls { grid-template-columns: 1.4fr 1fr 1fr auto auto; align-items: center; }
+    }
+    .search {
+      display: flex;
+      gap: 8px;
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .search input[type="text"] {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      color: var(--fg);
+      outline: none;
+      font-size: 14px;
+    }
+    .btn {
+      background: linear-gradient(180deg, #1f2937, #111827);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform .05s ease, background .2s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { background: #1b2431; }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { border-color: #1f3a2b; background: linear-gradient(180deg, #1f3a2b, #122018); color: #e9ffe9; }
+    .btn-outline { background: transparent; }
+    .select, .checkbox {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      width: 100%;
+    }
+    .row {
+      display: flex; gap: 8px; align-items: center;
+    }
+    .stats {
+      display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+      color: var(--muted); font-size: 12px; margin-top: 6px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    @media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1080px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 14px 12px;
+      display: grid;
+      gap: 8px;
+    }
+    .card-head { display: flex; gap: 10px; align-items: baseline; }
+    .tag { font-size: 11px; color: var(--muted); border: 1px solid var(--border); padding: 2px 6px; border-radius: 999px; }
+    .term-en { font-weight: 700; font-size: 15px; letter-spacing: .2px; }
+    .term-ja { font-weight: 600; font-size: 14px; }
+    .term-ro { color: var(--muted); font-size: 12px; }
+    .desc { font-size: 13px; line-height: 1.5; color: #dbeafe; }
+    mark { background: var(--mark-bg); color: var(--mark-fg); padding: 0 2px; border-radius: 2px; }
+    .card-actions { display: flex; gap: 8px; justify-content: space-between; align-items: center; margin-top: 4px; }
+    .fav-btn { background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--fg); padding: 6px 8px; cursor: pointer; }
+    .fav-btn[data-active="true"] { color: #ffe08a; border-color: #6b4f00; background: #241a00; }
+    .pagination { display: flex; gap: 6px; justify-content: center; align-items: center; margin-top: 16px; }
+    .page-btn { padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--fg); cursor: pointer; }
+    .page-btn[aria-current="true"] { background: var(--accent-2); color: #081019; border-color: #0a4fba; }
+    .hidden { display: none !important; }
+    .footer-note { color: var(--muted); font-size: 11px; margin-top: 18px; text-align: center; }
+    .kbd { border: 1px solid var(--border); border-bottom-width: 3px; padding: 1px 5px; border-radius: 6px; background: #0a1220; font-size: 11px; color: #c7d2fe; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title">
+        <h1>AP Exam IT Vocabulary – AM Session</h1>
+        <span class="tag">Offline • Single File</span>
+      </div>
+      <div class="subtitle">Search English, Japanese, Roomaji, and descriptions. Bookmark favorites, export results, and practice with random terms.</div>
+
+      <div class="controls">
+        <div class="search" title="Type to filter (instant)">
+          <input id="q" type="text" placeholder="Search (例: cache, キャッシュ, kyasshu, availability, ... )" autofocus />
+          <button id="clearBtn" class="btn btn-outline" title="Clear search">Clear</button>
+        </div>
+        <select id="category" class="select" title="Filter by category">
+          <option value="__all__">All Categories</option>
+        </select>
+        <div class="row" title="Show only favorites">
+          <label style="display:flex;align-items:center;gap:8px;width:100%">
+            <input id="favOnly" type="checkbox" /> Favorites only
+          </label>
+        </div>
+        <button id="exportBtn" class="btn" title="Export current results to CSV">Export CSV</button>
+        <button id="randomBtn" class="btn btn-primary" title="Show a random term for study mode">Random Term</button>
+      </div>
+
+      <div class="stats">
+        <span id="count">0 results</span>
+        <span>•</span>
+        <span id="reading">0 chars • ~0 min read</span>
+        <span>•</span>
+        <span>Tips: Use <span class="kbd">/</span> to focus search, <span class="kbd">Esc</span> to clear</span>
+      </div>
+    </header>
+
+    <main>
+      <section id="results" class="grid"></section>
+      <nav id="pager" class="pagination hidden" aria-label="Pagination"></nav>
+      <div class="footer-note">Data extracted from Spring 2025 AM study guide. Works fully offline.</div>
+    </main>
+  </div>
+
+  <!-- Embed source markdown for offline parsing -->
+  <script id="ap-md" type="text/plain">
+# AP 2025 Spring - Morning Session Guide
+# AP Exam Study Guide - Spring 2025 AM Session (令和7年度 春期 午前)
+
+**For Non-Native Japanese Speakers**
+
+**Exam Date**: April 20, 2025  
+**Session**: Morning (9:30-12:00, 150 minutes)  
+**Format**: 80 multiple choice questions  
+**Content**: Technical vocabulary & concept explanations  
+**Status**: ✅ Complete
+
+## 🎯 About This Guide
+
+This guide provides comprehensive vocabulary and concept explanations in table format to help non-native Japanese speakers understand AP exam AM session questions. Each term includes English translation, Japanese script, romanized pronunciation (using proper gojuuonzu syllables), and detailed beginner-friendly explanations.
+
+## Logic Circuits & Digital Electronics (論理回路・デジタル回路)
+
+### Basic Logic Gates (基本論理ゲート)
+
+| English Term | Japanese | Roomaji | Description & Logic |
+|--------------|----------|---------|-------------------|
+| AND Gate | 論理積素子 | ronri seki soshi | **Logic**: Output is 1 ONLY when ALL inputs are 1. Think of it like "both conditions must be true". Example: Door opens only when you have both a key AND permission. In binary: 1∧1=1, but 1∧0=0, 0∧1=0, 0∧0=0 |
+| OR Gate | 論理和素子 | ronri wa soshi | **Logic**: Output is 1 when AT LEAST ONE input is 1. Think "either condition can be true". Example: Light turns on when you flip switch A OR switch B. In binary: 1∨1=1, 1∨0=1, 0∨1=1, 0∨0=0 |
+| NOT Gate (Inverter) | 論理否定素子 | ronri hitei soshi | **Logic**: Always inverts the input. 0 becomes 1, 1 becomes 0. Think of it as "opposite". Example: If door is closed (0), NOT gate makes it open (1). Simple but essential for complex circuits. |
+| NAND Gate | 否定論理積素子 | hitei ronri seki soshi | **Logic**: Combination of AND + NOT. Output is 0 ONLY when all inputs are 1, otherwise 1. Most important gate because you can build ANY circuit using only NAND gates. Think "not all conditions true". |
+| NOR Gate | 否定論理和素子 | hitei ronri wa soshi | **Logic**: Combination of OR + NOT. Output is 1 ONLY when all inputs are 0, otherwise 0. Think "none of the conditions are true". Example: Alarm triggers only when NO sensors detect anything. |
+| XOR Gate | 排他的論理和素子 | haitaiteki ronri wa soshi | **Logic**: Output is 1 when inputs are DIFFERENT. Think "exclusive or" - one OR the other, but not both. Used in encryption and error detection. Example: 1⊕0=1, 0⊕1=1, but 1⊕1=0, 0⊕0=0 |
+| Buffer | バッファ | baffa | **Logic**: Passes signal unchanged but provides amplification. Like a signal booster. Input 1 → Output 1, Input 0 → Output 0. Used to strengthen weak signals or provide multiple outputs. |
+| Three-State Buffer | スリーステートバッファ | surii suteeto baffa | **Logic**: Can output 0, 1, or high impedance (floating/disconnected). Think of it as a switch that can be "off, on, or unplugged". Essential for bus systems where multiple devices share the same wire. |
+
+### Circuit Components (回路部品)
+
+| English Term | Japanese | Roomaji | Description & Function |
+|--------------|----------|---------|----------------------|
+| Resistor | 抵抗 | teikou | **Function**: Controls current flow like a narrow pipe controls water flow. Measured in Ohms (Ω). **Ohm's Law**: V = I × R (Voltage = Current × Resistance). Higher resistance = less current. Used to limit current and divide voltage. |
+| Capacitor | コンデンサ | kondensa | **Function**: Stores electrical charge like a battery, but temporary. Measured in Farads (F). **Behavior**: Charges up when voltage applied, discharges when voltage removed. Used for filtering, timing, and energy storage. Blocks DC, passes AC. |
+| Diode | ダイオード | daioodo | **Function**: One-way valve for electricity. Current flows from Anode (+) to Cathode (-) only. **Applications**: Prevents reverse current, converts AC to DC, protects circuits. LED (Light Emitting Diode) is special type that produces light. |
+| Transistor | トランジスタ | toranjishita | **Function**: Electronic switch or amplifier with 3 terminals: Base, Collector, Emitter. **Switching**: Small current at base controls large current between collector-emitter. Foundation of all digital circuits and computers. |
+| Ground | 接地 | setchi | **Function**: Reference point for all voltage measurements (0V). Like sea level for measuring height. **Safety**: Provides path for dangerous currents to safely dissipate into earth. Essential for circuit stability and safety. |
+| Operational Amplifier | 演算増幅器 | enzan zoufukuki | **Function**: High-gain voltage amplifier with two inputs (+ and -). **Applications**: Mathematical operations (add, subtract, integrate), signal conditioning, filtering. Can amplify tiny signals to useful levels. |
+
+### Digital-to-Analog Conversion (D/A変換)
+
+| English Term | Japanese | Roomaji | Technical Details |
+|--------------|----------|---------|------------------|
+| DAC (Digital-to-Analog Converter) | D/A変換器 | D/A henkan-ki | **Purpose**: Converts digital numbers to analog voltages. **Example**: 8-bit DAC converts numbers 0-255 to voltages 0-10V. Used in audio systems, displays, motor controls. Essential bridge between digital computers and analog world. |
+| Resolution | 分解能 | bunkai-nou | **Definition**: Number of different output levels possible. **Calculation**: 2^n levels for n-bit DAC. **Example**: 8-bit DAC has 2^8 = 256 levels. Higher resolution = more precise output, but more expensive and complex. |
+| LSB (Least Significant Bit) | 最下位ビット | sai kaii bit | **Definition**: Smallest change in digital input that produces output change. **Calculation**: LSB = (V_max - V_min) / (2^n - 1). **Example**: For 8-bit DAC with 0-10V range: LSB = 10V/255 ≈ 39.2mV |
+| Reference Voltage | 基準電圧 | kijun den'atsu | **Function**: Maximum output voltage of DAC. **Importance**: Determines output range and accuracy. **Example**: 5V reference means maximum output is 5V. Must be stable and precise for accurate conversion. |
+
+## Algorithms & Data Structures (アルゴリズム・データ構造)
+
+### Numerical Algorithms (数値アルゴリズム)
+
+| English Term | Japanese | Roomaji | Algorithm Details |
+|--------------|----------|---------|------------------|
+| Bisection Method | 二分法 | nibunhou | **Purpose**: Find roots of equations (where f(x) = 0). **Process**: 1) Start with interval [a,b] where f(a) and f(b) have opposite signs. 2) Calculate midpoint c = (a+b)/2. 3) If f(c) = 0, found root. 4) If f(a) and f(c) same sign, set a = c, else set b = c. 5) Repeat until |b-a| < tolerance. **Convergence**: Guaranteed to find root, halves search space each iteration. |
+| Binary Search | 二分探索 | nibun tansaku | **Purpose**: Find element in sorted array. **Process**: 1) Compare target with middle element. 2) If equal, found. 3) If target smaller, search left half. 4) If target larger, search right half. 5) Repeat until found or search space empty. **Efficiency**: O(log n) time complexity - very fast even for large arrays. |
+| Linear Search | 線形探索 | senkei tansaku | **Purpose**: Find element by checking each item sequentially. **Process**: Start from first element, compare with target, move to next if not found. **Efficiency**: O(n) time complexity - slow for large arrays but works on unsorted data. |
+| Bubble Sort | バブルソート | baburu sooto | **Purpose**: Sort array by repeatedly swapping adjacent elements. **Process**: Compare pairs, swap if wrong order, repeat until no swaps needed. **Efficiency**: O(n²) - slow but easy to understand. Name comes from small elements "bubbling" to top. |
+
+### Stack Operations (スタック操作)
+
+| English Term | Japanese | Roomaji | Operation Details |
+|--------------|----------|---------|------------------|
+| Stack | スタック | sutakku | **Concept**: LIFO (Last In, First Out) data structure. Think of stack of plates - you can only add/remove from the top. **Applications**: Function calls, expression evaluation, undo operations, browser history. |
+| Push | プッシュ | pusshu | **Operation**: Add element to top of stack. **Process**: 1) Check if stack is full. 2) Increment top pointer. 3) Store new element at top position. **Example**: Push(5) onto stack [1,2,3] → [1,2,3,5] |
+| Pop | ポップ | poppu | **Operation**: Remove and return top element. **Process**: 1) Check if stack is empty. 2) Store top element in temporary variable. 3) Decrement top pointer. 4) Return stored element. **Example**: Pop() from [1,2,3,5] → returns 5, stack becomes [1,2,3] |
+| Top/Peek | トップ/ピーク | toppu/piiku | **Operation**: View top element without removing it. **Use**: Check what's on top before deciding to pop. **Example**: Top() of [1,2,3,5] returns 5, but stack remains [1,2,3,5] |
+| Stack Overflow | スタックオーバーフロー | sutakku oobaa furoo | **Problem**: Trying to push when stack is full. **Causes**: Infinite recursion, too many function calls. **Prevention**: Check stack size, increase stack limit, optimize recursive algorithms. |
+| Stack Underflow | スタックアンダーフロー | sutakku andaa furoo | **Problem**: Trying to pop from empty stack. **Prevention**: Always check if stack is empty before popping. **Error Handling**: Return error code or throw exception. |
+
+### Tree Data Structures (木構造)
+
+| English Term | Japanese | Roomaji | Structure Details |
+|--------------|----------|---------|------------------|
+| Binary Tree | 二分木 | nibunki | **Definition**: Tree where each node has at most 2 children (left and right). **Terminology**: Root (top node), Leaf (node with no children), Height (longest path from root to leaf). **Applications**: Decision trees, expression parsing, file systems. |
+| Binary Search Tree (BST) | 二分探索木 | nibun tansakuki | **Property**: Left child < Parent < Right child for all nodes. **Advantage**: Search, insert, delete in O(log n) average time. **Traversal**: In-order traversal gives sorted sequence. **Problem**: Can become unbalanced, degrading to O(n) performance. |
+| AVL Tree | AVL木 | AVL ki | **Definition**: Self-balancing BST where height difference between left and right subtrees ≤ 1. **Inventor**: Adelson-Velsky and Landis. **Advantage**: Guarantees O(log n) operations. **Maintenance**: Performs rotations during insert/delete to maintain balance. |
+| Tree Traversal | 木の走査 | ki no sousa | **In-order**: Left → Root → Right (gives sorted order for BST). **Pre-order**: Root → Left → Right (good for copying tree). **Post-order**: Left → Right → Root (good for deleting tree). **Level-order**: Visit nodes level by level (uses queue). |
+
+### Recursion (再帰)
+
+| English Term | Japanese | Roomaji | Concept Details |
+|--------------|----------|---------|------------------|
+| Recursion | 再帰 | saiki | **Definition**: Function that calls itself with simpler input. **Requirements**: 1) Base case (stopping condition). 2) Recursive case (calls itself). **Example**: factorial(n) = n × factorial(n-1), base: factorial(0) = 1 |
+| Base Case | 基底条件 | kitei jouken | **Purpose**: Prevents infinite recursion. **Examples**: factorial(0) = 1, fibonacci(0) = 0, fibonacci(1) = 1. **Importance**: Without base case, program crashes with stack overflow. |
+| Recursive Case | 再帰的場合 | saikiteki baai | **Purpose**: Breaks problem into smaller subproblems. **Design**: Each recursive call should be closer to base case. **Example**: factorial(5) → 5 × factorial(4) → 5 × 4 × factorial(3) → ... |
+| Stack Frame | スタックフレーム | sutakku fureimu | **Definition**: Memory space for each function call. **Contents**: Local variables, parameters, return address. **Problem**: Deep recursion can exhaust memory. **Solution**: Use iteration or tail recursion optimization. |
+
+## Computer Architecture & Performance (コンピュータアーキテクチャ・性能)
+
+### CPU Performance Metrics (CPU性能指標)
+
+| English Term | Japanese | Roomaji | Performance Details |
+|--------------|----------|---------|-------------------|
+| CPI (Cycles Per Instruction) | 命令当たりサイクル数 | meirei atari saikuru suu | **Definition**: Average number of clock cycles needed to execute one instruction. **Calculation**: CPI = Total Cycles / Total Instructions. **Factors**: Instruction complexity, pipeline efficiency, cache hits/misses. **Typical Values**: 1-4 for modern CPUs. |
+| Clock Frequency | クロック周波数 | kurokku shuuhasuu | **Definition**: Number of clock cycles per second, measured in Hz. **Modern CPUs**: 2-5 GHz (billion cycles/second). **Relationship**: Higher frequency ≠ always better performance due to CPI differences. **Limitations**: Heat, power consumption increase with frequency. |
+| Processing Time | 処理時間 | shori jikan | **Formula**: Time = (Instructions × CPI) / Clock_Frequency. **Example**: 1M instructions, CPI=2, 1GHz clock → Time = (1M × 2) / 1G = 2ms. **Optimization**: Reduce instructions, lower CPI, or increase frequency. |
+| Throughput | スループット | suruuputto | **Definition**: Amount of work completed per unit time. **Measurement**: Instructions per second, transactions per second. **Vs Latency**: Throughput = how much work, Latency = how fast individual task. **Improvement**: Parallel processing, pipelining. |
+
+### Memory Systems (メモリシステム)
+
+| English Term | Japanese | Roomaji | Memory Details |
+|--------------|----------|---------|----------------|
+| Cache Memory | キャッシュメモリ | kyasshu memori | **Purpose**: High-speed buffer between CPU and main memory. **Principle**: Frequently used data stored in fast, small cache. **Hierarchy**: L1 (fastest, smallest) → L2 → L3 → Main Memory (slowest, largest). **Hit Rate**: Percentage of requests served from cache. |
+| Virtual Memory | 仮想メモリ | kasou memori | **Purpose**: Makes physical memory appear larger using disk storage. **Mechanism**: OS swaps unused pages to disk. **Benefits**: Programs can be larger than physical memory, memory protection between processes. **Page Fault**: When needed page not in memory. |
+| Paging | ページング | peeji-ngu | **Concept**: Divide memory into fixed-size pages (typically 4KB). **Page Table**: Maps virtual addresses to physical addresses. **TLB**: Translation Lookaside Buffer caches page table entries for speed. **Advantage**: Eliminates external fragmentation. |
+| Memory Hierarchy | メモリ階層 | memori kaisou | **Levels**: Registers (fastest) → L1 Cache → L2 Cache → L3 Cache → Main Memory → Secondary Storage (slowest). **Principle**: Smaller = faster = more expensive. **Locality**: Temporal (recently used) and spatial (nearby addresses) locality of reference. |
+
+### Parallel Processing (並列処理)
+
+| English Term | Japanese | Roomaji | Parallel Details |
+|--------------|----------|---------|-----------------|
+| Multiprocessor | マルチプロセッサ | maruchi purosessa | **Definition**: System with multiple CPUs working together. **Types**: Shared memory (SMP) vs Distributed memory (cluster). **Coordination**: Synchronization, communication between processors. **Challenges**: Load balancing, synchronization overhead. |
+| Speedup | 速度向上 | sokudo koujou | **Definition**: Performance improvement from parallelization. **Formula**: Speedup = Time_sequential / Time_parallel. **Ideal**: Linear speedup (2x processors = 2x speedup). **Reality**: Usually less due to overhead and sequential portions. |
+| Efficiency | 効率 | kouritu | **Formula**: E = 1/(1-r+r/n) where r = parallelizable fraction, n = processors. **Amdahl's Law**: Limits maximum speedup based on sequential portion. **Example**: 90% parallelizable, 3 processors → E = 1/(0.1+0.9/3) = 2.31x speedup. |
+| Load Balancing | 負荷分散 | fuka bunsan | **Purpose**: Distribute work evenly among processors. **Static**: Work divided before execution. **Dynamic**: Work redistributed during execution. **Challenges**: Communication overhead, varying task complexity. |
+
+### System Reliability (システム信頼性)
+
+| English Term | Japanese | Roomaji | Reliability Details |
+|--------------|----------|---------|-------------------|
+| MTBF (Mean Time Between Failures) | 平均故障間隔 | heikin koshhou kankaku | **Definition**: Average operating time between system failures. **Calculation**: MTBF = Total Operating Time / Number of Failures. **Example**: System runs 8760 hours with 2 failures → MTBF = 4380 hours. **Use**: Predicting maintenance schedules. |
+| MTTR (Mean Time To Repair) | 平均修理時間 | heikin shuuri jikan | **Definition**: Average time to restore system after failure. **Includes**: Detection time, repair time, testing time. **Factors**: Spare parts availability, technician skill, system complexity. **Goal**: Minimize MTTR through good design and procedures. |
+| Availability | 可用性 | kayou-sei | **Formula**: Availability = MTBF / (MTBF + MTTR). **Expression**: Usually percentage (99.9% = 8.76 hours downtime/year). **High Availability**: 99.99% (52.6 minutes downtime/year). **Improvement**: Increase MTBF, decrease MTTR, add redundancy. |
+| Redundancy | 冗長性 | jouchou-sei | **Definition**: Backup components to prevent single points of failure. **Types**: Active (hot standby), Passive (cold standby), N+1 (N working + 1 spare). **Cost**: Extra hardware, but essential for critical systems. |
+
+## Operating Systems (オペレーティングシステム)
+
+### Process Management (プロセス管理)
+
+| English Term | Japanese | Roomaji | Process Details |
+|--------------|----------|---------|-----------------|
+| Process | プロセス | purosesu | **Definition**: Program in execution with its own memory space. **Components**: Code, data, stack, heap, process control block (PCB). **vs Thread**: Process = heavy, isolated; Thread = light, shared memory. **Creation**: Fork (Unix), CreateProcess (Windows). |
+| Process State | プロセス状態 | purosesu joutai | **New**: Process being created. **Ready**: Waiting for CPU assignment. **Running**: Currently executing. **Waiting**: Blocked for I/O or event. **Terminated**: Execution completed. **Transitions**: Scheduler moves processes between states. |
+| Ready State | 実行可能状態 | jikkou kanou joutai | **Definition**: Process has all resources except CPU. **Ready Queue**: List of ready processes waiting for CPU. **Scheduler**: Selects which ready process runs next. **Priority**: Higher priority processes selected first. |
+| Running State | 実行状態 | jikkou joutai | **Definition**: Process currently using CPU. **Single CPU**: Only one process can be running. **Time Slice**: Maximum time process can run before preemption. **Context Switch**: Save state when switching to another process. |
+| Waiting State | 待ち状態 | machi joutai | **Causes**: I/O operations, waiting for resources, synchronization. **Blocking**: Process cannot continue until event occurs. **Wake up**: When event occurs, process moves to ready state. **Types**: Interruptible vs uninterruptible waiting. |
+| Context Switching | コンテキストスイッチ | kontekisuto suicchi | **Definition**: Saving current process state and loading another process state. **Overhead**: Time spent switching is not productive work. **What's Saved**: Registers, program counter, stack pointer, memory management info. **Triggers**: Time slice expiry, I/O request, interrupts. |
+
+### Memory Management (メモリ管理)
+
+| English Term | Japanese | Roomaji | Memory Details |
+|--------------|----------|---------|----------------|
+| Memory Allocation | メモリ割り当て | memori wari-ate | **Static**: Fixed size allocated at compile time. **Dynamic**: Variable size allocated at runtime (malloc/free). **Heap**: Dynamic memory region. **Stack**: Function call memory (automatic allocation/deallocation). |
+| Memory Protection | メモリ保護 | memori hogo | **Purpose**: Prevent processes from accessing each other's memory. **Mechanisms**: Base and bound registers, page tables with permissions. **Protection Bits**: Read, Write, Execute permissions. **Violation**: Segmentation fault, access violation. |
+| Memory Fragmentation | メモリ断片化 | memori danpen-ka | **Internal**: Allocated memory larger than requested. **External**: Free memory scattered in small chunks. **Solutions**: Compaction, paging, buddy system. **Problem**: Cannot allocate large blocks despite sufficient total free memory. |
+| Page Replacement | ページ置換 | peeji chikan | **Need**: When physical memory full and new page needed. **LRU**: Replace least recently used page. **FIFO**: Replace oldest page. **Optimal**: Replace page not used for longest time (theoretical). **Clock**: Approximation of LRU using reference bits. |
+
+### Real-Time Systems (リアルタイムシステム)
+
+| English Term | Japanese | Roomaji | Real-Time Details |
+|--------------|----------|---------|------------------|
+| Real-Time System | リアルタイムシステム | riaru taimu shisutemu | **Definition**: System where correctness depends on both result and timing. **Examples**: Flight control, medical devices, industrial automation. **Constraints**: Must respond within specified deadlines. **Predictability**: More important than average performance. |
+| Hard Real-Time | ハードリアルタイム | haado riaru taimu | **Definition**: Missing deadline causes system failure. **Examples**: Anti-lock brakes, airbag deployment, nuclear reactor control. **Guarantee**: System must prove it will always meet deadlines. **Design**: Conservative resource allocation, deterministic behavior. |
+| Soft Real-Time | ソフトリアルタイム | sofuto riaru taimu | **Definition**: Missing deadline degrades performance but doesn't cause failure. **Examples**: Video streaming, audio playback, web servers. **Tolerance**: Occasional deadline misses acceptable. **Optimization**: Best effort to meet deadlines. |
+| Deadline | デッドライン | deddo rain | **Definition**: Time by which task must complete. **Types**: Absolute (specific time), Relative (time from start). **Scheduling**: Priority often based on deadline urgency. **Miss**: Task completes after deadline (late). |
+
+## Network & Communication (ネットワーク・通信)
+
+### Network Protocols (ネットワークプロトコル)
+
+| English Term | Japanese | Roomaji | Protocol Details |
+|--------------|----------|---------|-----------------|
+| TCP/IP | TCP/IP | TCP/IP | **Definition**: Internet protocol suite with 4 layers. **Reliability**: TCP provides reliable, ordered delivery. **Routing**: IP provides addressing and routing. **Ubiquity**: Foundation of internet communication. **Layers**: Application, Transport, Internet, Link. |
+| HTTP | HTTP | HTTP | **Purpose**: Web page transfer protocol. **Port**: 80 (HTTP), 443 (HTTPS). **Methods**: GET (retrieve), POST (send data), PUT (update), DELETE (remove). **Stateless**: Each request independent. **HTTPS**: HTTP over SSL/TLS for security. |
+| FTP | FTP | FTP | **Purpose**: File transfer protocol. **Ports**: 20 (data), 21 (control). **Modes**: Active (server connects to client), Passive (client connects to server). **Authentication**: Username/password required. **Binary/ASCII**: Different transfer modes for different file types. |
+| SMTP | SMTP | SMTP | **Purpose**: Email sending protocol. **Port**: 25 (standard), 587 (submission). **Process**: Client connects to server, authenticates, sends message. **Relay**: Messages passed between mail servers. **Security**: STARTTLS for encryption. |
+| POP3 | POP3 | POP3 | **Purpose**: Email retrieval protocol. **Port**: 110 (POP3), 995 (POP3S). **Behavior**: Downloads emails to client, deletes from server. **Limitation**: Single device access. **vs IMAP**: IMAP keeps emails on server for multi-device access. |
+
+### IP Addressing & Subnetting (IPアドレス・サブネット)
+
+| English Term | Japanese | Roomaji | Addressing Details |
+|--------------|----------|---------|-------------------|
+| IPv4 Address | IPv4アドレス | IPv4 adoresu | **Format**: 32-bit address written as 4 octets (192.168.1.1). **Classes**: A (1-126), B (128-191), C (192-223). **Private**: 10.x.x.x, 172.16-31.x.x, 192.168.x.x. **Limitation**: Only 4.3 billion addresses. |
+| Subnet Mask | サブネットマスク | sabunetuto masuku | **Purpose**: Separates network and host portions of IP address. **Format**: 255.255.255.0 or /24 (CIDR notation). **Calculation**: Binary AND with IP address gives network address. **Example**: 192.168.1.5/24 → network 192.168.1.0, host 5. |
+| CIDR Notation | CIDR記法 | CIDR kihou | **Format**: IP/prefix_length (192.168.1.0/24). **Meaning**: /24 = first 24 bits are network, last 8 bits are host. **Hosts**: 2^(32-prefix) - 2 (subtract network and broadcast). **Example**: /24 = 254 hosts, /25 = 126 hosts. |
+| Subnetting | サブネット分割 | sabunetuto bunkatsu | **Purpose**: Divide large network into smaller subnetworks. **Benefits**: Better security, reduced broadcast traffic, efficient IP usage. **Process**: Borrow host bits for subnet bits. **Example**: 192.168.1.0/24 → 192.168.1.0/26, 192.168.1.64/26, etc. |
+
+### Routing (ルーティング)
+
+| English Term | Japanese | Roomaji | Routing Details |
+|--------------|----------|---------|-----------------|
+| Routing Table | ルーティングテーブル | ruutingu teeburu | **Contents**: Destination network, next hop, interface, metric. **Lookup**: Find longest prefix match for destination. **Updates**: Static (manual) or dynamic (routing protocols). **Default Route**: 0.0.0.0/0 catches all unmatched destinations. |
+| Default Gateway | デフォルトゲートウェイ | deforutio geeto wei | **Purpose**: Router that forwards traffic to other networks. **Configuration**: Set in device's IP settings. **Function**: When destination not on local network, send to default gateway. **Example**: Home router is default gateway for devices. |
+| Longest Prefix Match | 最長プレフィックスマッチ | saichou purefikkusu macchi | **Principle**: Choose route with most specific (longest) network prefix. **Example**: Packet to 192.168.1.5 matches 192.168.1.0/24 over 192.168.0.0/16. **Reason**: More specific routes are more accurate. **Tie-breaking**: Use metric if prefixes equal length. |
+| Hop Count | ホップ数 | hoppu-suu | **Definition**: Number of routers packet traverses to reach destination. **Metric**: Used by some routing protocols (RIP). **Limitation**: Doesn't consider link speed or congestion. **Maximum**: RIP limits to 15 hops (16 = unreachable). |
+
+### Data Transmission (データ転送)
+
+| English Term | Japanese | Roomaji | Transmission Details |
+|--------------|----------|---------|---------------------|
+| MTU (Maximum Transmission Unit) | 最大転送単位 | saidai tensou tan'i | **Definition**: Largest packet size that can be transmitted without fragmentation. **Ethernet**: 1500 bytes typical. **Discovery**: Path MTU discovery finds smallest MTU along route. **Fragmentation**: Large packets split into smaller pieces if MTU exceeded. |
+| Packet Fragmentation | パケット断片化 | paketto danpen-ka | **Need**: When packet larger than link MTU. **Process**: Split into fragments with fragment headers. **Reassembly**: Destination collects all fragments. **Problem**: Lost fragment = retransmit entire packet. **IPv6**: Source must do fragmentation. |
+| Bandwidth | 帯域幅 | taiiki-haba | **Definition**: Maximum data rate of communication channel. **Units**: bps (bits per second), Mbps, Gbps. **vs Throughput**: Bandwidth = theoretical maximum, Throughput = actual achieved. **Factors**: Protocol overhead, congestion, errors affect throughput. |
+| Latency | 遅延 | chien | **Definition**: Time delay for data to travel from source to destination. **Components**: Propagation (distance/speed), transmission (packet_size/bandwidth), processing, queuing. **Types**: Round-trip time (RTT) = time for packet + acknowledgment. |
+
+### Email Systems (電子メール)
+
+| English Term | Japanese | Roomaji | Email Details |
+|--------------|----------|---------|---------------|
+| MIME | MIME | MIME | **Purpose**: Multipurpose Internet Mail Extensions for non-text content. **Encoding**: Base64 for binary data, Quoted-printable for text. **Headers**: Content-Type, Content-Encoding specify format. **Attachments**: Files encoded and embedded in email. |
+| Base64 Encoding | Base64符号化 | Base64 fugou-ka | **Purpose**: Convert binary data to text for email transmission. **Process**: 3 bytes → 4 ASCII characters. **Efficiency**: 25% size increase (4/3 ratio). **Example**: 30KB file → 40KB encoded. **Characters**: A-Z, a-z, 0-9, +, / (64 total). |
+| Mail Server | メールサーバー | meeru saabaa | **Types**: SMTP (outgoing), POP3/IMAP (incoming). **Functions**: Store, forward, deliver emails. **Authentication**: Username/password, certificates. **Security**: SSL/TLS encryption, spam filtering, virus scanning. **Relay**: Forward emails between different domains. |
+| Email Header | メールヘッダー | meeru heddaa | **Contents**: From, To, Subject, Date, Message-ID. **Routing**: Received headers show path through servers. **Hidden**: Many headers not shown to users. **Analysis**: Headers help debug delivery problems and trace spam. |
+
+## Database Systems (データベースシステム)
+
+### Database Design (データベース設計)
+
+| English Term | Japanese | Roomaji | Database Details |
+|--------------|----------|---------|------------------|
+| Entity-Relationship Model | エンティティ関係モデル | entiti kankei moderu | **Purpose**: Visual method for database design. **Components**: Entities (things), Attributes (properties), Relationships (connections). **Notation**: Rectangles = entities, Ovals = attributes, Diamonds = relationships. **Cardinality**: One-to-one, one-to-many, many-to-many relationships. |
+| Primary Key | 主キー | shu kii | **Definition**: Unique identifier for each row in table. **Properties**: Cannot be NULL, cannot duplicate, should not change. **Purpose**: Ensures entity integrity, used in relationships. **Example**: StudentID in Students table, OrderID in Orders table. |
+| Foreign Key | 外部キー | gaibu kii | **Definition**: Column that references primary key in another table. **Purpose**: Maintains referential integrity between tables. **Rules**: Must match existing primary key or be NULL. **Example**: CustomerID in Orders table references CustomerID in Customers table. |
+| Composite Key | 複合キー | fukugou kii | **Definition**: Primary key consisting of multiple columns. **Use**: When no single column uniquely identifies row. **Example**: (StudentID, CourseID) in Enrollment table. **Advantage**: Natural identification, **Disadvantage**: More complex joins. |
+
+### Normalization (正規化)
+
+| English Term | Japanese | Roomaji | Normalization Details |
+|--------------|----------|---------|----------------------|
+| First Normal Form (1NF) | 第一正規形 | dai-ichi seiki-kei | **Rule**: Eliminate repeating groups, each cell contains single value. **Problem**: Multiple values in one field. **Solution**: Create separate rows for each value. **Example**: Instead of "Skills: Java, Python, C++" use separate rows for each skill. |
+| Second Normal Form (2NF) | 第二正規形 | dai-ni seiki-kei | **Rule**: Must be 1NF + eliminate partial dependencies. **Problem**: Non-key attributes depend on part of composite key. **Solution**: Split table to remove partial dependencies. **Example**: If (StudentID, CourseID) → Grade, but CourseID → CourseName, move CourseName to separate table. |
+| Third Normal Form (3NF) | 第三正規形 | dai-san seiki-kei | **Rule**: Must be 2NF + eliminate transitive dependencies. **Problem**: Non-key attribute depends on another non-key attribute. **Solution**: Move transitively dependent attributes to separate table. **Example**: StudentID → DepartmentID → DepartmentName, move DepartmentName to Department table. |
+| Denormalization | 非正規化 | hi seiki-ka | **Purpose**: Intentionally violate normalization for performance. **Trade-off**: Faster queries vs data redundancy. **When**: Read-heavy systems, data warehouses. **Risks**: Update anomalies, storage overhead, consistency problems. |
+
+### SQL Operations (SQL操作)
+
+| English Term | Japanese | Roomaji | SQL Details |
+|--------------|----------|---------|-------------|
+| DDL (Data Definition Language) | データ定義言語 | deeta teigi gen-go | **Commands**: CREATE, ALTER, DROP. **Purpose**: Define database structure. **CREATE**: Make new tables, indexes, views. **ALTER**: Modify existing structure. **DROP**: Delete database objects. **Permissions**: Usually require administrator privileges. |
+| DML (Data Manipulation Language) | データ操作言語 | deeta sousa gen-go | **Commands**: SELECT, INSERT, UPDATE, DELETE. **Purpose**: Manipulate data within tables. **SELECT**: Query data. **INSERT**: Add new rows. **UPDATE**: Modify existing rows. **DELETE**: Remove rows. **Transactions**: Changes can be rolled back. |
+| CASCADE | カスケード | kasukedo | **Purpose**: Automatically perform related operations. **ON DELETE CASCADE**: When parent deleted, delete children. **ON UPDATE CASCADE**: When parent key updated, update children. **Example**: Delete customer → automatically delete all their orders. **Risk**: Unintended data loss if not careful. |
+| INNER JOIN | 内部結合 | naibu ketsu-gou | **Purpose**: Return rows that have matching values in both tables. **Syntax**: SELECT * FROM A INNER JOIN B ON A.id = B.id. **Result**: Only matching rows included. **Use**: Most common join type for related data. |
+| LEFT JOIN | 左外部結合 | hidari gaibu ketsu-gou | **Purpose**: Return all rows from left table, matching rows from right. **NULL**: Right table columns are NULL for unmatched rows. **Use**: Find all customers, even those without orders. **Syntax**: FROM Customers LEFT JOIN Orders ON Customer.ID = Orders.CustomerID. |
+
+### Database Performance (データベース性能)
+
+| English Term | Japanese | Roomaji | Performance Details |
+|--------------|----------|---------|-------------------|
+| Index | インデックス | indekkusu | **Purpose**: Speed up queries by creating sorted reference to data. **Types**: B-tree (balanced), Hash (exact match), Bitmap (low cardinality). **Trade-off**: Faster SELECT, slower INSERT/UPDATE/DELETE. **Clustering**: Physical order matches index order. |
+| Query Optimization | クエリ最適化 | kueri saiteki-ka | **Purpose**: Find most efficient execution plan. **Optimizer**: Database engine component that chooses plan. **Factors**: Available indexes, table statistics, join order. **Hints**: Manual suggestions to optimizer (use carefully). |
+| Transaction | トランザクション | toranzakushon | **ACID**: Atomicity (all or nothing), Consistency (valid state), Isolation (concurrent safety), Durability (permanent). **BEGIN/COMMIT**: Start and confirm transaction. **ROLLBACK**: Undo changes. **Concurrency**: Multiple transactions simultaneously. |
+| Deadlock | デッドロック | deddo rokku | **Problem**: Two transactions each waiting for resources held by the other. **Detection**: Database monitors for circular wait conditions. **Resolution**: Abort one transaction, let other complete. **Prevention**: Always acquire locks in same order. |
+
+## Software Engineering (ソフトウェア工学)
+
+### Development Methodologies (開発手法)
+
+| English Term | Japanese | Roomaji | Methodology Details |
+|--------------|----------|---------|-------------------|
+| Waterfall Model | ウォーターフォールモデル | wootaa fooru moderu | **Process**: Sequential phases: Requirements → Design → Implementation → Testing → Maintenance. **Advantage**: Clear structure, easy to manage. **Disadvantage**: Inflexible to changes, late feedback. **Use**: Stable requirements, regulated industries. |
+| Agile Development | アジャイル開発 | ajairu kaihatsu | **Principles**: Individuals over processes, working software over documentation, customer collaboration, responding to change. **Iterations**: Short cycles (1-4 weeks). **Benefits**: Flexible, early feedback, continuous improvement. **Frameworks**: Scrum, Kanban, XP. |
+| Scrum | スクラム | sukuramu | **Roles**: Product Owner (requirements), Scrum Master (facilitator), Team (developers). **Events**: Sprint Planning, Daily Standup, Sprint Review, Retrospective. **Artifacts**: Product Backlog, Sprint Backlog, Increment. **Sprint**: Fixed time period (usually 2-4 weeks). |
+| Extreme Programming (XP) | エクストリームプログラミング | ekusutoriimu puroguramingu | **Practices**: Pair programming, test-driven development, continuous integration, refactoring. **Values**: Communication, simplicity, feedback, courage. **Planning**: Release planning, iteration planning. **Code**: Collective ownership, coding standards. |
+
+### Software Quality (ソフトウェア品質)
+
+| English Term | Japanese | Roomaji | Quality Details |
+|--------------|----------|---------|-----------------|
+| Software Metrics | ソフトウェア指標 | sofuto wea shihyou | **Code Metrics**: Lines of code, cyclomatic complexity, coupling, cohesion. **Process Metrics**: Defect density, test coverage, velocity. **Purpose**: Measure quality, predict problems, track improvement. **KLOC**: Thousand Lines of Code (common unit). |
+| Defect Density | 欠陥密度 | kekkan mitsudo | **Formula**: Defects / KLOC (thousand lines of code). **Benchmark**: <1 defect/KLOC = good quality. **Tracking**: Monitor throughout development lifecycle. **Types**: Syntax errors, logic errors, integration errors, performance issues. |
+| Test Coverage | テストカバレッジ | tesuto kabareeji | **Definition**: Percentage of code executed by tests. **Types**: Statement coverage, branch coverage, path coverage. **Tools**: Automated tools measure coverage. **Goal**: Usually 80-90% coverage target. **Quality**: High coverage ≠ good tests (need meaningful assertions). |
+| Code Review | コードレビュー | koodo rebyuu | **Purpose**: Find defects, improve code quality, share knowledge. **Types**: Formal (structured process), informal (pair programming). **Benefits**: Early defect detection, knowledge transfer, coding standard enforcement. **Tools**: GitHub pull requests, Crucible, Review Board. |
+
+### Testing (テスト)
+
+| English Term | Japanese | Roomaji | Testing Details |
+|--------------|----------|---------|-----------------|
+| Unit Testing | 単体テスト | tantai tesuto | **Scope**: Individual components/functions in isolation. **Tools**: JUnit (Java), NUnit (.NET), pytest (Python). **Mocking**: Replace dependencies with controlled substitutes. **Benefits**: Fast feedback, regression prevention, documentation. |
+| Integration Testing | 結合テスト | ketsu-gou tesuto | **Scope**: Test component interactions. **Types**: Big Bang (all at once), Incremental (gradual), Top-down, Bottom-up. **Challenges**: Interface problems, data format issues, timing problems. **Environment**: Often requires test databases, external services. |
+| System Testing | システムテスト | shisutemu tesuto | **Scope**: Complete integrated system. **Environment**: Production-like test environment. **Types**: Functional testing, performance testing, security testing, usability testing. **User Acceptance**: Customer validates system meets requirements. |
+| Black Box Testing | ブラックボックステスト | burakku bokkusu tesuto | **Approach**: Test without knowing internal implementation. **Focus**: Input-output behavior, requirements compliance. **Techniques**: Equivalence partitioning, boundary value analysis, decision tables. **Advantage**: User perspective, unbiased by implementation. |
+| White Box Testing | ホワイトボックステスト | howaito bokkusu tesuto | **Approach**: Test with full knowledge of internal structure. **Focus**: Code paths, conditions, loops. **Techniques**: Statement coverage, branch coverage, path coverage. **Advantage**: Thorough testing of all code paths. |
+
+### Project Management (プロジェクト管理)
+
+| English Term | Japanese | Roomaji | Project Details |
+|--------------|----------|---------|-----------------|
+| PERT Chart | PERT図 | PERT-zu | **Purpose**: Project scheduling using network diagram. **Components**: Activities (arrows), events (nodes), dependencies. **Critical Path**: Longest path through network (determines minimum project time). **Float**: Extra time available for non-critical activities. |
+| Critical Path Method (CPM) | クリティカルパス法 | kuritikaru pasu-hou | **Definition**: Sequence of activities that determines minimum project duration. **Calculation**: Forward pass (earliest start/finish), backward pass (latest start/finish). **Float**: Difference between latest and earliest times. **Management**: Focus resources on critical path activities. |
+| Gantt Chart | ガント図 | ganto-zu | **Purpose**: Visual timeline showing project schedule. **Components**: Tasks (bars), dependencies (arrows), milestones (diamonds), resources. **Benefits**: Easy to understand, shows progress, identifies conflicts. **Tools**: Microsoft Project, Smartsheet, Asana. |
+| Work Breakdown Structure (WBS) | 作業分解構造 | sagyou bunkai kouzou | **Purpose**: Hierarchical decomposition of project into manageable tasks. **Levels**: Project → Phases → Deliverables → Work Packages → Activities. **100% Rule**: Lower levels must completely account for upper level. **Estimation**: Easier to estimate small tasks. |
+
+## Security (セキュリティ)
+
+### Cryptography & PKI (暗号化・PKI)
+
+| English Term | Japanese | Roomaji | Cryptography Details |
+|--------------|----------|---------|---------------------|
+| Encryption | 暗号化 | angou-ka | **Purpose**: Convert plaintext to ciphertext to protect confidentiality. **Types**: Symmetric (same key), Asymmetric (public/private keys). **Algorithms**: AES (symmetric), RSA (asymmetric). **Strength**: Key length determines difficulty to break. |
+| Digital Certificate | デジタル証明書 | dejitaru shoumei-sho | **Purpose**: Electronic credential that proves identity. **Contents**: Public key, owner identity, issuer signature, validity period. **CA**: Certificate Authority issues and signs certificates. **Chain**: Certificates form trust chain to root CA. |
+| PKI (Public Key Infrastructure) | 公開鍵基盤 | koukai kagi kiban | **Components**: Certificate Authority (CA), Registration Authority (RA), Certificate Repository, Key Recovery. **Trust Model**: Hierarchical (tree), Mesh (cross-certification), Web of Trust. **Lifecycle**: Key generation, certificate issuance, renewal, revocation. |
+| Hash Function | ハッシュ関数 | hasshu kansuu | **Properties**: One-way (irreversible), deterministic, fixed output size, avalanche effect. **Uses**: Password storage, digital signatures, data integrity. **Algorithms**: SHA-256, SHA-3, MD5 (deprecated). **Collision**: When two inputs produce same hash (should be rare). |
+
+### Network Security (ネットワークセキュリティ)
+
+| English Term | Japanese | Roomaji | Security Details |
+|--------------|----------|---------|------------------|
+| Firewall | ファイアウォール | faia wooru | **Purpose**: Control network traffic based on security rules. **Types**: Packet filter, stateful inspection, application-level gateway. **Rules**: Allow/deny based on IP, port, protocol, application. **DMZ**: Demilitarized zone for public-facing services. |
+| VPN (Virtual Private Network) | 仮想プライベートネットワーク | kasou puraibeetо netowaaku | **Purpose**: Secure connection over public network. **Protocols**: IPsec (network layer), L2TP (data link), SSL/TLS (application). **Benefits**: Encryption, authentication, access to private resources. **Types**: Site-to-site, remote access. |
+| IPsec | IPsec | IPsec | **Purpose**: Network layer security protocol suite. **Modes**: Transport (end-to-end), Tunnel (gateway-to-gateway). **Protocols**: AH (authentication), ESP (encryption + authentication). **SA**: Security Association defines security parameters. |
+| SSL/TLS | SSL/TLS | SSL/TLS | **Purpose**: Secure communication over networks (HTTPS, email, etc.). **Handshake**: Negotiate algorithms, exchange keys, authenticate. **Certificates**: Server presents certificate to prove identity. **Versions**: TLS 1.3 is current, SSL deprecated. |
+
+### Web Security (Webセキュリティ)
+
+| English Term | Japanese | Roomaji | Web Security Details |
+|--------------|----------|---------|---------------------|
+| SQL Injection | SQLインジェクション | SQL injekushon | **Attack**: Insert malicious SQL code into application inputs. **Example**: Login with username "admin'--" bypasses password check. **Prevention**: Parameterized queries, input validation, least privilege. **Impact**: Data theft, modification, deletion. |
+| XSS (Cross-Site Scripting) | クロスサイトスクリプティング | kurosu saito sukuriputingu | **Attack**: Inject malicious scripts into web pages viewed by other users. **Types**: Stored (persistent), Reflected (non-persistent), DOM-based. **Prevention**: Input validation, output encoding, Content Security Policy. **Impact**: Session hijacking, defacement, malware. |
+| CSRF (Cross-Site Request Forgery) | クロスサイトリクエストフォージェリー | kurosu saito rikuesuto foojerii | **Attack**: Trick user into performing unintended actions on authenticated site. **Method**: Malicious site submits form to victim site using user's credentials. **Prevention**: CSRF tokens, SameSite cookies, referrer validation. **Impact**: Unauthorized transactions, account changes. |
+| Cookie Security | クッキーセキュリティ | kukkii sekyuriti | **Secure Flag**: Only send over HTTPS connections. **HttpOnly Flag**: Prevent JavaScript access to reduce XSS impact. **SameSite**: Control cross-site cookie sending. **Expiration**: Limit cookie lifetime to reduce exposure window. |
+
+### Authentication & Authorization (認証・認可)
+
+| English Term | Japanese | Roomaji | Auth Details |
+|--------------|----------|---------|--------------|
+| Authentication | 認証 | ninshou | **Definition**: Verify user identity. **Factors**: Something you know (password), have (token), are (biometric). **Multi-factor**: Combine multiple factors for stronger security. **Methods**: Username/password, certificates, biometrics, tokens. |
+| Authorization | 認可 | ninka | **Definition**: Determine what authenticated user can access. **Models**: Discretionary (DAC), Mandatory (MAC), Role-based (RBAC). **Principle**: Least privilege - minimum necessary permissions. **Implementation**: Access control lists, capabilities. |
+| Single Sign-On (SSO) | シングルサインオン | shinguru sain on | **Purpose**: Authenticate once, access multiple systems. **Benefits**: User convenience, reduced password fatigue, centralized management. **Protocols**: SAML, OAuth, OpenID Connect. **Risk**: Single point of failure if compromised. |
+| Two-Factor Authentication (2FA) | 二要素認証 | ni youso ninshou | **Purpose**: Require two different authentication factors. **Common**: Password + SMS code, password + authenticator app. **Security**: Even if one factor compromised, attacker needs second. **Implementation**: Time-based tokens, hardware tokens, biometrics. |
+
+## Business & Management (ビジネス・マネジメント)
+
+### Service Level Management (サービスレベル管理)
+
+| English Term | Japanese | Roomaji | SLA Details |
+|--------------|----------|---------|-------------|
+| SLA (Service Level Agreement) | サービスレベル合意書 | saabisu reberu goui-sho | **Definition**: Contract defining expected service performance. **Metrics**: Availability, response time, throughput, error rate. **Penalties**: Financial consequences for not meeting SLA. **Review**: Regular monitoring and reporting of SLA compliance. |
+| Uptime | 稼働時間 | kadou jikan | **Definition**: Time system is operational and available. **Measurement**: Usually percentage (99.9% = 8.76 hours downtime/year). **Calculation**: (Total time - Downtime) / Total time. **Industry**: Cloud providers often guarantee 99.95%+ uptime. |
+| Response Time | 応答時間 | outou jikan | **Definition**: Time between request and response. **Components**: Network latency, processing time, queue time. **SLA**: Often specified as percentile (95% of requests < 200ms). **Measurement**: Important for user experience and SLA compliance. |
+| Throughput | スループット | suruuputto | **Definition**: Amount of work completed per unit time. **Units**: Requests per second, transactions per minute, data per hour. **Capacity**: Maximum sustainable throughput. **Bottleneck**: Component that limits overall throughput. |
+
+### Cloud Computing (クラウドコンピューティング)
+
+| English Term | Japanese | Roomaji | Cloud Details |
+|--------------|----------|---------|---------------|
+| IaaS (Infrastructure as a Service) | IaaS | IaaS | **Definition**: Virtualized computing resources over internet. **Includes**: Virtual machines, storage, networks, load balancers. **Examples**: AWS EC2, Azure VMs, Google Compute Engine. **Benefits**: Scalability, no hardware management, pay-per-use. |
+| PaaS (Platform as a Service) | PaaS | PaaS | **Definition**: Platform for developing, running applications. **Includes**: Runtime environment, development tools, databases. **Examples**: Google App Engine, Heroku, Azure App Service. **Benefits**: Faster development, automatic scaling, managed infrastructure. |
+| SaaS (Software as a Service) | SaaS | SaaS | **Definition**: Complete software applications delivered over internet. **Examples**: Gmail, Salesforce, Office 365, Slack. **Benefits**: No installation, automatic updates, accessible anywhere. **Pricing**: Usually subscription-based. |
+| Hybrid Cloud | ハイブリッドクラウド | haiburiddo kuraudo | **Definition**: Combination of public and private cloud environments. **Benefits**: Flexibility, cost optimization, regulatory compliance. **Use Cases**: Sensitive data on-premises, burst to public cloud. **Challenge**: Management complexity, integration. |
+
+### Business Models (ビジネスモデル)
+
+| English Term | Japanese | Roomaji | Business Details |
+|--------------|----------|---------|------------------|
+| Freemium | フリーミアム | furiimiamu | **Model**: Basic features free, premium features paid. **Strategy**: Attract users with free tier, convert to paid. **Examples**: Spotify, Dropbox, LinkedIn. **Metrics**: Conversion rate from free to paid users. |
+| Subscription | サブスクリプション | sabusukuripushon | **Model**: Recurring payment for continued access. **Benefits**: Predictable revenue, customer retention focus. **Examples**: Netflix, Adobe Creative Cloud, SaaS applications. **Challenges**: Customer churn, acquisition cost. |
+| Marketplace | マーケットプレイス | maaketo pureisu | **Model**: Platform connecting buyers and sellers. **Revenue**: Commission, listing fees, advertising. **Examples**: Amazon, eBay, Airbnb, Uber. **Network Effects**: More users attract more users. |
+| Advertising | 広告モデル | koukoku moderu | **Model**: Free service funded by advertising revenue. **Types**: Display ads, search ads, native advertising, sponsored content. **Examples**: Google Search, Facebook, YouTube. **Metrics**: Click-through rate, cost per click. |
+
+### Cost Analysis (コスト分析)
+
+| English Term | Japanese | Roomaji | Cost Details |
+|--------------|----------|---------|--------------|
+| Activity-Based Costing (ABC) | 活動基準原価計算 | katsudou kijun genka keisan | **Method**: Assign costs to activities, then to products based on activity usage. **Steps**: Identify activities, assign costs to activities, identify cost drivers, calculate rates. **Benefits**: More accurate product costs, better decision making. |
+| Total Cost of Ownership (TCO) | 総所有コスト | sou shoyuu kosuto | **Definition**: All costs associated with owning/operating system over its lifetime. **Components**: Purchase, implementation, training, maintenance, support, upgrades. **Purpose**: Compare alternatives, budget planning. **Hidden Costs**: Often underestimated. |
+| Return on Investment (ROI) | 投資収益率 | toushi shuuekiritsu | **Formula**: (Gain - Investment) / Investment × 100%. **Example**: Invest $100K, gain $150K → ROI = 50%. **Use**: Compare investment alternatives, justify projects. **Limitation**: Doesn't consider time value of money. |
+| Break-Even Analysis | 損益分岐点分析 | son'eki bunki-ten bunseki | **Purpose**: Find point where revenue equals costs. **Formula**: Fixed Costs / (Price - Variable Cost per unit). **Use**: Pricing decisions, volume planning, risk assessment. **Graph**: Shows relationship between volume, costs, and profit. |
+
+## Key Formulas & Calculations (重要な公式・計算)
+
+### Performance Calculations (性能計算)
+
+| Formula Name | Japanese | Roomaji | Formula & Example |
+|--------------|----------|---------|-------------------|
+| CPU Processing Time | CPU処理時間 | CPU shori jikan | **Formula**: Time = (Instructions × CPI) / Clock_Frequency<br>**Example**: 1M instructions, CPI=2, 1GHz → Time = (1M × 2) / 1G = 2ms<br>**Units**: Instructions (count), CPI (cycles/instruction), Frequency (Hz), Time (seconds) |
+| Parallel Processing Efficiency | 並列処理効率 | heiretsu shori kouritu | **Formula**: E = 1/(1-r+r/n)<br>**Variables**: r = parallelizable fraction (0-1), n = number of processors<br>**Example**: 90% parallelizable, 3 processors → E = 1/(0.1+0.9/3) = 2.31x speedup<br>**Amdahl's Law**: Theoretical maximum speedup limit |
+| System Availability | システム可用性 | shisutemu kayou-sei | **Formula**: Availability = MTBF / (MTBF + MTTR)<br>**Example**: MTBF=8760 hours, MTTR=4 hours → Availability = 8760/8764 = 99.95%<br>**Units**: Usually expressed as percentage (99.9%, 99.99%, etc.) |
+| Network Throughput | ネットワークスループット | netowaaku suruuputto | **Formula**: Effective_Data = MTU - Headers<br>**Example**: Ethernet MTU=1500, TCP=20, IP=20, Ethernet=14 → Data = 1500-54 = 1446 bytes<br>**Efficiency**: (Useful data / Total packet size) × 100% |
+
+### Database Calculations (データベース計算)
+
+| Calculation Type | Japanese | Roomaji | Calculation Details |
+|------------------|----------|---------|-------------------|
+| Storage Requirements | ストレージ要件 | sutooreeji youken | **Formula**: Rows × (Fixed_fields + Variable_fields + Overhead)<br>**Example**: 1M customers, 200 bytes average → 200MB + indexes + overhead<br>**Factors**: Data types, NULL values, indexes, transaction logs |
+| Index Size | インデックスサイズ | indekkusu saizu | **Formula**: Rows × (Key_size + Pointer_size)<br>**Example**: 1M rows, 4-byte key, 8-byte pointer → 12MB<br>**Multiple**: B-tree indexes are typically 2-3x this calculation |
+| Query Performance | クエリ性能 | kueri seinou | **Without Index**: O(n) - scan all rows<br>**With Index**: O(log n) - binary search<br>**Example**: 1M rows → No index: 1M checks, With index: ~20 checks |
+
+---
+
+**Study Completion Notes:**
+- **Total Terms Covered**: 200+ technical terms with detailed explanations
+- **Format Benefits**: Table format allows quick lookup and comparison
+- **Language Support**: English, Japanese, and Roomaji for pronunciation
+- **Beginner Focus**: Detailed explanations assume no prior knowledge
+- **Practical Examples**: Real-world calculations and scenarios throughout
+
+*Study Guide completed: August 12, 2025*  
+*Content based on: IPA AP Spring 2025 Official Exam (AM Session)*  
+*Target Audience: Non-native Japanese speakers preparing for AP certification*
+  </script>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const state = {
+        all: [],                 // full array of terms
+        filtered: [],            // filtered results
+        favorites: new Set(),    // ids of favorited terms
+        query: '',
+        category: '__all__',
+        favOnly: false,
+        page: 1,
+        pageSize: 50
+      };
+
+      const $ = (sel) => document.querySelector(sel);
+      const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+      const els = {
+        q: $('#q'),
+        clear: $('#clearBtn'),
+        cat: $('#category'),
+        favOnly: $('#favOnly'),
+        exportBtn: $('#exportBtn'),
+        randomBtn: $('#randomBtn'),
+        results: $('#results'),
+        count: $('#count'),
+        reading: $('#reading'),
+        pager: $('#pager'),
+        md: $('#ap-md')
+      };
+
+      function normalizeSpaces(s) { return s.replace(/\s+/g, ' ').trim(); }
+      function toLower(s) { return (s || '').toLowerCase(); }
+      function escReg(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+      function hashId(str) { // simple 32-bit hash
+        let h = 2166136261 >>> 0;
+        for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+        return (h >>> 0).toString(36);
+      }
+
+      // Parse Markdown tables into vocabulary items
+      function parseMarkdown(md) {
+        const lines = md.split(/\r?\n/);
+        const items = [];
+        let category = '';
+        let sub = '';
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          if (line.startsWith('## ')) { category = normalizeSpaces(line.replace(/^##\s+/, '')); sub = ''; continue; }
+          if (line.startsWith('### ')) { sub = normalizeSpaces(line.replace(/^###\s+/, '')); continue; }
+
+          // Table detection: header row followed by separator row
+          if (line.trim().startsWith('|') && i + 1 < lines.length && lines[i+1].match(/^\|[-\s:]+\|$/)) {
+            const header = line.split('|').map(c => c.trim()).filter(Boolean);
+            const headerMap = {};
+            header.forEach((h, idx) => headerMap[toLower(h)] = idx);
+            const idxEn = headerMap['english term'] ?? headerMap['english'] ?? 0;
+            const idxJa = headerMap['japanese'] ?? 1;
+            const idxRo = headerMap['roomaji'] ?? headerMap['romanji'] ?? 2;
+            const idxDesc = header.length - 1; // last column is description/details
+
+            // advance past separator row
+            i += 2;
+            for (; i < lines.length; i++) {
+              const row = lines[i];
+              if (!row.trim().startsWith('|')) { i--; break; }
+              const cols = row.split('|').map(c => c.trim());
+              if (cols.length < 5) continue; // leading and trailing empties + 3+ data
+              const cells = cols.filter(Boolean);
+              const english = normalizeSpaces(cells[idxEn] || '');
+              const japanese = normalizeSpaces(cells[idxJa] || '');
+              const roomaji = normalizeSpaces(cells[idxRo] || '');
+              let description = normalizeSpaces(cells[idxDesc] || '');
+              // strip bold markers and trailing pipes
+              description = description.replace(/^\*\*|\*\*$/g, '');
+
+              if (!english && !japanese && !roomaji && !description) continue;
+              const cat = sub ? `${category} — ${sub}` : category;
+              const id = hashId(`${english}|${japanese}|${roomaji}|${cat}`);
+              const searchIndex = toLower(`${english} ${japanese} ${roomaji} ${description}`);
+              items.push({ id, english, japanese, roomaji, description, category: cat, searchIndex });
+            }
+          }
+        }
+        return items;
+      }
+
+      function loadFavorites() {
+        try {
+          const raw = localStorage.getItem('ap_vocab_favs');
+          if (raw) { state.favorites = new Set(JSON.parse(raw)); }
+        } catch {}
+      }
+      function saveFavorites() {
+        try { localStorage.setItem('ap_vocab_favs', JSON.stringify([...state.favorites])); } catch {}
+      }
+
+      function applyFilters() {
+        const q = toLower(state.query);
+        const tokens = q.split(/\s+/).filter(Boolean);
+        const cat = state.category;
+        const favOnly = state.favOnly;
+
+        let arr = state.all;
+        if (tokens.length) {
+          arr = arr.filter(it => tokens.every(t => it.searchIndex.includes(t)));
+        }
+        if (cat !== '__all__') {
+          arr = arr.filter(it => it.category === cat);
+        }
+        if (favOnly) {
+          arr = arr.filter(it => state.favorites.has(it.id));
+        }
+        state.filtered = arr;
+        state.page = 1;
+        render();
+      }
+
+      function highlight(text, tokens) {
+        if (!tokens.length || !text) return text;
+        let html = text;
+        const unique = [...new Set(tokens.filter(Boolean))];
+        unique.forEach(tok => {
+          const re = new RegExp(`(${escReg(tok)})`, 'gi');
+          html = html.replace(re, '<mark>$1</mark>');
+        });
+        return html;
+      }
+
+      function render() {
+        const total = state.filtered.length;
+        const tokens = toLower(state.query).split(/\s+/).filter(Boolean);
+
+        // reading estimates
+        const charCount = state.filtered.reduce((n, it) => n + (it.description || '').length, 0);
+        const minutes = Math.max(1, Math.ceil(charCount / 800)); // ~800 chars/min
+        els.count.textContent = `${total} result${total === 1 ? '' : 's'}`;
+        els.reading.textContent = `${charCount.toLocaleString()} chars • ~${minutes} min read`;
+
+        // pagination
+        const pages = Math.max(1, Math.ceil(total / state.pageSize));
+        state.page = Math.min(state.page, pages);
+        const start = (state.page - 1) * state.pageSize;
+        const slice = state.filtered.slice(start, start + state.pageSize);
+
+        // render cards
+        const frag = document.createDocumentFragment();
+        slice.forEach(it => {
+          const card = document.createElement('article');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="card-head">
+              <div class="term-en">${highlight(it.english, tokens)}</div>
+              <span class="tag">${it.category}</span>
+            </div>
+            <div class="term-ja">${highlight(it.japanese, tokens)}</div>
+            <div class="term-ro">${highlight(it.roomaji, tokens)}</div>
+            <div class="desc">${highlight(it.description, tokens)}</div>
+            <div class="card-actions">
+              <button class="fav-btn" data-id="${it.id}" data-active="${state.favorites.has(it.id)}">★ Favorite</button>
+              <span style="color:var(--muted);font-size:12px;">ID: ${it.id}</span>
+            </div>
+          `;
+          frag.appendChild(card);
+        });
+        els.results.innerHTML = '';
+        els.results.appendChild(frag);
+
+        // bind favorite buttons
+        $$('.fav-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            if (state.favorites.has(id)) { state.favorites.delete(id); }
+            else { state.favorites.add(id); }
+            saveFavorites();
+            btn.setAttribute('data-active', String(state.favorites.has(id)));
+            if (state.favOnly) applyFilters();
+          });
+        });
+
+        // pager
+        renderPager(pages);
+      }
+
+      function renderPager(pages) {
+        const p = els.pager;
+        if (pages <= 1) { p.classList.add('hidden'); p.innerHTML=''; return; }
+        p.classList.remove('hidden');
+        const makeBtn = (label, page, current=false) => {
+          const b = document.createElement('button');
+          b.className = 'page-btn';
+          b.textContent = label;
+          b.setAttribute('aria-current', String(current));
+          b.disabled = current;
+          b.addEventListener('click', () => { state.page = page; render(); });
+          return b;
+        };
+        p.innerHTML = '';
+        p.appendChild(makeBtn('«', 1, state.page===1));
+        p.appendChild(makeBtn('‹', Math.max(1, state.page-1), false));
+        const windowSize = 5;
+        const start = Math.max(1, state.page - Math.floor(windowSize/2));
+        const end = Math.min(pages, start + windowSize - 1);
+        for (let i = start; i <= end; i++) { p.appendChild(makeBtn(String(i), i, i===state.page)); }
+        p.appendChild(makeBtn('›', Math.min(pages, state.page+1), false));
+        p.appendChild(makeBtn('»', pages, state.page===pages));
+      }
+
+      function buildCategories(items) {
+        const cats = Array.from(new Set(items.map(it => it.category))).sort((a,b) => a.localeCompare(b));
+        els.cat.innerHTML = '<option value="__all__">All Categories</option>' +
+          cats.map(c => `<option value="${c.replace(/"/g,'&quot;')}">${c}</option>`).join('');
+      }
+
+      function exportCSV(items) {
+        const header = ['English','Japanese','Roomaji','Description','Category'];
+        const rows = items.map(it => [it.english, it.japanese, it.roomaji, it.description, it.category]);
+        const esc = (v) => '"' + String(v).replace(/"/g,'""') + '"';
+        const csv = [header.map(esc).join(','), ...rows.map(r => r.map(esc).join(','))].join('\n');
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'ap_vocab_results.csv';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      function pickRandom(items) {
+        if (!items.length) return null;
+        const idx = Math.floor(Math.random() * items.length);
+        return items[idx];
+      }
+
+      function showRandom() {
+        const pool = state.filtered.length ? state.filtered : state.all;
+        const item = pickRandom(pool);
+        if (!item) return;
+        // simple toast
+        const toast = document.createElement('div');
+        toast.style.position='fixed'; toast.style.left='50%'; toast.style.top='12px'; toast.style.transform='translateX(-50%)';
+        toast.style.background = '#0c2a1a'; toast.style.border='1px solid #1f3a2b'; toast.style.color='#e9ffe9';
+        toast.style.padding='10px 14px'; toast.style.borderRadius='10px'; toast.style.zIndex='9999'; toast.style.boxShadow='0 10px 30px rgba(0,0,0,.4)';
+        toast.innerHTML = `<strong>${item.english}</strong> — ${item.japanese} <span style="color:#9fe3b1">(${item.roomaji})</span><br><small>${item.category}</small>`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2600);
+
+        // ensure visible by navigating to page where it appears
+        const index = state.filtered.findIndex(it => it.id === item.id);
+        if (index >= 0) {
+          state.page = Math.floor(index / state.pageSize) + 1;
+          render();
+        }
+      }
+
+      function attachEvents() {
+        els.q.addEventListener('input', (e) => { state.query = e.target.value; applyFilters(); });
+        els.clear.addEventListener('click', () => { els.q.value=''; state.query=''; applyFilters(); els.q.focus(); });
+        els.cat.addEventListener('change', (e) => { state.category = e.target.value; applyFilters(); });
+        els.favOnly.addEventListener('change', (e) => { state.favOnly = !!e.target.checked; applyFilters(); });
+        els.exportBtn.addEventListener('click', () => exportCSV(state.filtered));
+        els.randomBtn.addEventListener('click', showRandom);
+
+        // keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+          if (e.key === '/' && document.activeElement !== els.q) { e.preventDefault(); els.q.focus(); }
+          if (e.key === 'Escape') { els.clear.click(); }
+        });
+      }
+
+      // Init
+      function init() {
+        loadFavorites();
+        const md = els.md.textContent;
+        state.all = parseMarkdown(md);
+        buildCategories(state.all);
+        applyFilters();
+        attachEvents();
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
+
+
