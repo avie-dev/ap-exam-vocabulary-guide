@@ -160,7 +160,7 @@
     <header>
       <div class="title">
         <h1>📘 AP Exam IT Vocabulary – AM Session</h1>
-        <span class="tag">Offline • Single File • ✨ Cuter UI</span>
+        <span class="tag">Single File ✨ </span>
       </div>
       <div class="subtitle">Search English, Japanese, Roomaji, and descriptions. Bookmark favorites, export results, and practice with random terms.</div>
 
@@ -741,6 +741,19 @@ This guide provides comprehensive vocabulary and concept explanations in table f
         return html;
       }
 
+      function formatDescription(text, tokens) {
+        if (!text) return '';
+        // Insert a line break before markdown bold segments that follow a sentence end
+        let html = text.replace(/\.\s+\*\*/g, '.<br/>**');
+        // Convert markdown bold (**...**) to <strong>…</strong>
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        // Optional: normalize multiple spaces
+        html = html.replace(/\s{2,}/g, ' ');
+        // Then apply token highlighting
+        html = highlight(html, tokens);
+        return html;
+      }
+
       function pastelFor(text) {
         // derive a pastel HSL color from string
         let h = 0;
@@ -779,7 +792,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
             </div>
             <div class="term-ja">${highlight(it.japanese, tokens)}</div>
             <div class="term-ro">${highlight(it.roomaji, tokens)}</div>
-            <div class="desc">${highlight(it.description, tokens)}</div>
+            <div class="desc">${formatDescription(it.description, tokens)}</div>
             <div class="card-actions">
               <button class="fav-btn" data-id="${it.id}" data-active="${state.favorites.has(it.id)}">${state.favorites.has(it.id) ? '⭐' : '☆'} Favorite</button>
               <span style="color:var(--muted);font-size:12px;">ID: ${it.id}</span>
