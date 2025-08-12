@@ -166,11 +166,6 @@ This guide is designed for:
 - **Google Translate**: For quick term lookup
 - **Japanese IO**: Grammar and reading practice
 
-### Study Communities
-- **Reddit r/LearnJapanese**: General Japanese learning
-- **Discord study groups**: Real-time study sessions
-- **LinkedIn groups**: Professional networking
-
 ## 🤝 Contributing
 
 This is an open-source study guide! Contributions welcome:
@@ -227,16 +222,6 @@ This is an open-source study guide! Contributions welcome:
 
 ### Getting Help
 - **Create an issue** for content questions
-- **Check FAQ** section for common problems
-- **Join study groups** via community links
-- **Email maintainers** for urgent issues
-
-### Study Groups
-Looking for study partners? Check our Community Page (coming soon) for:
-- Local study groups by city
-- Online study sessions
-- Language exchange partners
-- Exam date study marathons
 
 ## 🏆 Success Stories
 
