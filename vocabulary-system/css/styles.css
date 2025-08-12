@@ -151,7 +151,7 @@ body {
 
 @media (min-width: 860px){ 
   .filters__row { 
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr auto; 
+    grid-template-columns: 1.6fr 0.9fr 1.2fr 1.2fr 1fr auto; 
   } 
 }
 
@@ -183,7 +183,7 @@ body {
 
 .field__inline { 
   display: grid; 
-  grid-template-columns: 1fr auto 1fr; 
+  grid-template-columns: minmax(10ch, 1fr) auto minmax(10ch, 1fr); 
   gap: 8px; 
   align-items: center; 
 }
