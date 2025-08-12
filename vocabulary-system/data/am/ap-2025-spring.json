@@ -1,0 +1,61 @@
+{
+  "examInfo": {
+    "code": "ap-2025-spring",
+    "year": 2025,
+    "season": "spring",
+    "session": "am",
+    "japaneseName": "令和7年度 春期 午前",
+    "examDate": "April 20, 2025"
+  },
+  "categories": [
+    {
+      "name": "Logic Circuits & Digital Electronics",
+      "japaneseName": "論理回路・デジタル回路",
+      "terms": [
+        {
+          "english": "AND Gate",
+          "japanese": "論理積素子",
+          "roomaji": "ronri seki soshi",
+          "description": "**Logic**: Output is 1 ONLY when ALL inputs are 1. Think of it like 'both conditions must be true'. Example: Door opens only when you have both a key AND permission. In binary: 1∧1=1, but 1∧0=0, 0∧1=0, 0∧0=0",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "OR Gate",
+          "japanese": "論理和素子",
+          "roomaji": "ronri wa soshi",
+          "description": "**Logic**: Output is 1 when AT LEAST ONE input is 1. Think 'either condition can be true'. Example: Light turns on when you flip switch A OR switch B. In binary: 1∨1=1, 1∨0=1, 0∨1=1, 0∨0=0",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "NOT Gate (Inverter)",
+          "japanese": "論理否定素子",
+          "roomaji": "ronri hitei soshi",
+          "description": "**Logic**: Always inverts the input. 0 becomes 1, 1 becomes 0. Think of it as 'opposite'. Example: If door is closed (0), NOT gate makes it open (1).",
+          "category": "Logic Circuits & Digital Electronics"
+        }
+      ]
+    },
+    {
+      "name": "Algorithms & Data Structures",
+      "japaneseName": "アルゴリズム・データ構造",
+      "terms": [
+        {
+          "english": "Binary Search",
+          "japanese": "二分探索",
+          "roomaji": "nibun tansaku",
+          "description": "**Purpose**: Find element in sorted array. **Process**: Compare target with middle element and reduce half each time. **Efficiency**: O(log n).",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Bubble Sort",
+          "japanese": "バブルソート",
+          "roomaji": "baburu sooto",
+          "description": "**Purpose**: Sort by repeatedly swapping adjacent elements. **Efficiency**: O(n²).",
+          "category": "Algorithms & Data Structures"
+        }
+      ]
+    }
+  ]
+}
+
+

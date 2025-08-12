@@ -1,0 +1,21 @@
+{
+  "lastUpdated": "2025-08-12",
+  "totalExams": 44,
+  "availableExams": [
+    {
+      "code": "ap-2025-spring",
+      "year": 2025,
+      "season": "spring",
+      "session": "am",
+      "japaneseName": "令和7年度 春期 午前",
+      "status": "complete",
+      "termCount": 200,
+      "filePath": "data/am/ap-2025-spring.json"
+    }
+  ],
+  "years": [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+  "seasons": ["spring","fall"],
+  "sessions": ["am","pm"]
+}
+
+

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AP Exam Vocabulary System</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <div class="brand">
+          <h1>AP Exam Vocabulary</h1>
+          <p class="brand__sub">Search 10 years (AM/PM) of Japanese IT terms</p>
+        </div>
+        <div class="quick-actions">
+          <button id="exportBtn" class="btn">Export CSV</button>
+          <button id="randomBtn" class="btn btn--primary">Random Term</button>
+        </div>
+      </header>
+
+      <section class="filters">
+        <div class="filters__row">
+          <div class="field field--search">
+            <label for="q">Search</label>
+            <input id="q" type="text" placeholder="Search EN/JA/Roomaji/Description" />
+          </div>
+
+          <div class="field">
+            <label for="examSelect">Exam</label>
+            <select id="examSelect">
+              <option value="__all__">All Exams</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="sessionSelect">Session</label>
+            <select id="sessionSelect">
+              <option value="both">Both Sessions</option>
+              <option value="am">AM Only</option>
+              <option value="pm">PM Only</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Year Range</label>
+            <div class="field__inline">
+              <select id="yearFrom"></select>
+              <span class="dash">–</span>
+              <select id="yearTo"></select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="categorySelect">Category</label>
+            <select id="categorySelect">
+              <option value="__all__">All Categories</option>
+            </select>
+          </div>
+
+          <div class="field field--toggle">
+            <label><input type="checkbox" id="favOnly" /> Favorites only</label>
+          </div>
+        </div>
+
+        <div class="filters__crumbs">
+          <span id="crumbs">All Exams • Both Sessions • 2015–2025 • All Categories</span>
+          <span class="stats" id="stats">Showing 0 terms from 0 exams</span>
+        </div>
+      </section>
+
+      <main class="results">
+        <div id="loading" class="loading hidden">Loading data…</div>
+        <section id="results" class="grid"></section>
+        <nav id="pager" class="pagination hidden" aria-label="Pagination"></nav>
+      </main>
+
+      <footer class="footer">
+        <small>Tip: Press <kbd>/</kbd> to focus search, <kbd>Esc</kbd> to clear • Preferences are saved locally</small>
+      </footer>
+    </div>
+
+    <script type="module" src="./js/app.js"></script>
+  </body>
+  </html>
+
+
