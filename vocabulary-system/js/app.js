@@ -57,6 +57,11 @@ function savePrefs() {
 
 function setLoading(v) { els.loading.classList.toggle('hidden', !v); }
 
+function clearSearch() {
+  state.query = '';
+  if (els.q) els.q.value = '';
+}
+
 function updateCrumbs() {
   const exam = state.examCode === '__all__' ? 'All Exams' : (state.examsMeta.find(e => e.code === state.examCode)?.japaneseName || state.examCode);
   const sess = state.session === 'both' ? 'Both Sessions' : state.session.toUpperCase();
@@ -290,11 +295,11 @@ async function init() {
     openModalWith(it);
   });
   els.sessionSelect.value = state.session;
-  els.sessionSelect.addEventListener('change', (e)=>{ state.session = e.target.value; savePrefs(); buildExamList(); updateCrumbs(); refreshData();});
-  els.yearFrom.addEventListener('change', (e)=>{ state.yearFrom = Number(e.target.value); if (state.yearFrom>state.yearTo) state.yearTo = state.yearFrom; savePrefs(); buildExamList(); updateCrumbs(); refreshData(); });
-  els.yearTo.addEventListener('change', (e)=>{ state.yearTo = Number(e.target.value); if (state.yearTo<state.yearFrom) state.yearFrom = state.yearTo; savePrefs(); buildExamList(); updateCrumbs(); refreshData(); });
-  els.examSelect.addEventListener('change', (e)=>{ state.examCode = e.target.value; savePrefs(); updateCrumbs(); refreshData(); });
-  els.category.addEventListener('change', (e)=>{ state.category = e.target.value; savePrefs(); applyFilters(); updateCrumbs(); });
+  els.sessionSelect.addEventListener('change', (e)=>{ state.session = e.target.value; clearSearch(); savePrefs(); buildExamList(); updateCrumbs(); refreshData();});
+  els.yearFrom.addEventListener('change', (e)=>{ state.yearFrom = Number(e.target.value); if (state.yearFrom>state.yearTo) state.yearTo = state.yearFrom; clearSearch(); savePrefs(); buildExamList(); updateCrumbs(); refreshData(); });
+  els.yearTo.addEventListener('change', (e)=>{ state.yearTo = Number(e.target.value); if (state.yearTo<state.yearFrom) state.yearFrom = state.yearTo; clearSearch(); savePrefs(); buildExamList(); updateCrumbs(); refreshData(); });
+  els.examSelect.addEventListener('change', (e)=>{ state.examCode = e.target.value; clearSearch(); savePrefs(); updateCrumbs(); refreshData(); });
+  els.category.addEventListener('change', (e)=>{ state.category = e.target.value; clearSearch(); savePrefs(); applyFilters(); updateCrumbs(); });
   els.favOnly.addEventListener('change', (e)=>{ state.favOnly = !!e.target.checked; savePrefs(); applyFilters(); });
 
   updateCrumbs();
