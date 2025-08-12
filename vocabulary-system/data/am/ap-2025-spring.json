@@ -9,6 +9,11 @@
   },
   "categories": [
     {
+      "name": "🎯 About This Guide",
+      "japaneseName": "",
+      "terms": []
+    },
+    {
       "name": "Logic Circuits & Digital Electronics",
       "japaneseName": "論理回路・デジタル回路",
       "terms": [
@@ -16,21 +21,126 @@
           "english": "AND Gate",
           "japanese": "論理積素子",
           "roomaji": "ronri seki soshi",
-          "description": "**Logic**: Output is 1 ONLY when ALL inputs are 1. Think of it like 'both conditions must be true'. Example: Door opens only when you have both a key AND permission. In binary: 1∧1=1, but 1∧0=0, 0∧1=0, 0∧0=0",
+          "description": "**Logic**: Output is 1 ONLY when ALL inputs are 1. Think of it like \"both conditions must be true\". Example: Door opens only when you have both a key AND permission. In binary: 1∧1=1, but 1∧0=0, 0∧1=0, 0∧0=0",
           "category": "Logic Circuits & Digital Electronics"
         },
         {
           "english": "OR Gate",
           "japanese": "論理和素子",
           "roomaji": "ronri wa soshi",
-          "description": "**Logic**: Output is 1 when AT LEAST ONE input is 1. Think 'either condition can be true'. Example: Light turns on when you flip switch A OR switch B. In binary: 1∨1=1, 1∨0=1, 0∨1=1, 0∨0=0",
+          "description": "**Logic**: Output is 1 when AT LEAST ONE input is 1. Think \"either condition can be true\". Example: Light turns on when you flip switch A OR switch B. In binary: 1∨1=1, 1∨0=1, 0∨1=1, 0∨0=0",
           "category": "Logic Circuits & Digital Electronics"
         },
         {
           "english": "NOT Gate (Inverter)",
           "japanese": "論理否定素子",
           "roomaji": "ronri hitei soshi",
-          "description": "**Logic**: Always inverts the input. 0 becomes 1, 1 becomes 0. Think of it as 'opposite'. Example: If door is closed (0), NOT gate makes it open (1).",
+          "description": "**Logic**: Always inverts the input. 0 becomes 1, 1 becomes 0. Think of it as \"opposite\". Example: If door is closed (0), NOT gate makes it open (1). Simple but essential for complex circuits.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "NAND Gate",
+          "japanese": "否定論理積素子",
+          "roomaji": "hitei ronri seki soshi",
+          "description": "**Logic**: Combination of AND + NOT. Output is 0 ONLY when all inputs are 1, otherwise 1. Most important gate because you can build ANY circuit using only NAND gates. Think \"not all conditions true\".",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "NOR Gate",
+          "japanese": "否定論理和素子",
+          "roomaji": "hitei ronri wa soshi",
+          "description": "**Logic**: Combination of OR + NOT. Output is 1 ONLY when all inputs are 0, otherwise 0. Think \"none of the conditions are true\". Example: Alarm triggers only when NO sensors detect anything.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "XOR Gate",
+          "japanese": "排他的論理和素子",
+          "roomaji": "haitaiteki ronri wa soshi",
+          "description": "**Logic**: Output is 1 when inputs are DIFFERENT. Think \"exclusive or\" - one OR the other, but not both. Used in encryption and error detection. Example: 1⊕0=1, 0⊕1=1, but 1⊕1=0, 0⊕0=0",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Buffer",
+          "japanese": "バッファ",
+          "roomaji": "baffa",
+          "description": "**Logic**: Passes signal unchanged but provides amplification. Like a signal booster. Input 1 → Output 1, Input 0 → Output 0. Used to strengthen weak signals or provide multiple outputs.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Three-State Buffer",
+          "japanese": "スリーステートバッファ",
+          "roomaji": "surii suteeto baffa",
+          "description": "**Logic**: Can output 0, 1, or high impedance (floating/disconnected). Think of it as a switch that can be \"off, on, or unplugged\". Essential for bus systems where multiple devices share the same wire.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Resistor",
+          "japanese": "抵抗",
+          "roomaji": "teikou",
+          "description": "**Function**: Controls current flow like a narrow pipe controls water flow. Measured in Ohms (Ω). **Ohm's Law**: V = I × R (Voltage = Current × Resistance). Higher resistance = less current. Used to limit current and divide voltage.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Capacitor",
+          "japanese": "コンデンサ",
+          "roomaji": "kondensa",
+          "description": "**Function**: Stores electrical charge like a battery, but temporary. Measured in Farads (F). **Behavior**: Charges up when voltage applied, discharges when voltage removed. Used for filtering, timing, and energy storage. Blocks DC, passes AC.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Diode",
+          "japanese": "ダイオード",
+          "roomaji": "daioodo",
+          "description": "**Function**: One-way valve for electricity. Current flows from Anode (+) to Cathode (-) only. **Applications**: Prevents reverse current, converts AC to DC, protects circuits. LED (Light Emitting Diode) is special type that produces light.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Transistor",
+          "japanese": "トランジスタ",
+          "roomaji": "toranjishita",
+          "description": "**Function**: Electronic switch or amplifier with 3 terminals: Base, Collector, Emitter. **Switching**: Small current at base controls large current between collector-emitter. Foundation of all digital circuits and computers.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Ground",
+          "japanese": "接地",
+          "roomaji": "setchi",
+          "description": "**Function**: Reference point for all voltage measurements (0V). Like sea level for measuring height. **Safety**: Provides path for dangerous currents to safely dissipate into earth. Essential for circuit stability and safety.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Operational Amplifier",
+          "japanese": "演算増幅器",
+          "roomaji": "enzan zoufukuki",
+          "description": "**Function**: High-gain voltage amplifier with two inputs (+ and -). **Applications**: Mathematical operations (add, subtract, integrate), signal conditioning, filtering. Can amplify tiny signals to useful levels.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "DAC (Digital-to-Analog Converter)",
+          "japanese": "D/A変換器",
+          "roomaji": "D/A henkan-ki",
+          "description": "**Purpose**: Converts digital numbers to analog voltages. **Example**: 8-bit DAC converts numbers 0-255 to voltages 0-10V. Used in audio systems, displays, motor controls. Essential bridge between digital computers and analog world.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Resolution",
+          "japanese": "分解能",
+          "roomaji": "bunkai-nou",
+          "description": "**Definition**: Number of different output levels possible. **Calculation**: 2^n levels for n-bit DAC. **Example**: 8-bit DAC has 2^8 = 256 levels. Higher resolution = more precise output, but more expensive and complex.",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "LSB (Least Significant Bit)",
+          "japanese": "最下位ビット",
+          "roomaji": "sai kaii bit",
+          "description": "**Definition**: Smallest change in digital input that produces output change. **Calculation**: LSB = (V_max - V_min) / (2^n - 1). **Example**: For 8-bit DAC with 0-10V range: LSB = 10V/255 ≈ 39.2mV",
+          "category": "Logic Circuits & Digital Electronics"
+        },
+        {
+          "english": "Reference Voltage",
+          "japanese": "基準電圧",
+          "roomaji": "kijun den'atsu",
+          "description": "**Function**: Maximum output voltage of DAC. **Importance**: Determines output range and accuracy. **Example**: 5V reference means maximum output is 5V. Must be stable and precise for accurate conversion.",
           "category": "Logic Circuits & Digital Electronics"
         }
       ]
@@ -40,22 +150,1069 @@
       "japaneseName": "アルゴリズム・データ構造",
       "terms": [
         {
+          "english": "Bisection Method",
+          "japanese": "二分法",
+          "roomaji": "nibunhou",
+          "description": "**Purpose**: Find roots of equations (where f(x) = 0). **Process**: 1) Start with interval [a,b] where f(a) and f(b) have opposite signs. 2) Calculate midpoint c = (a+b)/2. 3) If f(c) = 0, found root. 4) If f(a) and f(c) same sign, set a = c, else set b = c. 5) Repeat until",
+          "category": "Algorithms & Data Structures"
+        },
+        {
           "english": "Binary Search",
           "japanese": "二分探索",
           "roomaji": "nibun tansaku",
-          "description": "**Purpose**: Find element in sorted array. **Process**: Compare target with middle element and reduce half each time. **Efficiency**: O(log n).",
+          "description": "**Purpose**: Find element in sorted array. **Process**: 1) Compare target with middle element. 2) If equal, found. 3) If target smaller, search left half. 4) If target larger, search right half. 5) Repeat until found or search space empty. **Efficiency**: O(log n) time complexity - very fast even for large arrays.",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Linear Search",
+          "japanese": "線形探索",
+          "roomaji": "senkei tansaku",
+          "description": "**Purpose**: Find element by checking each item sequentially. **Process**: Start from first element, compare with target, move to next if not found. **Efficiency**: O(n) time complexity - slow for large arrays but works on unsorted data.",
           "category": "Algorithms & Data Structures"
         },
         {
           "english": "Bubble Sort",
           "japanese": "バブルソート",
           "roomaji": "baburu sooto",
-          "description": "**Purpose**: Sort by repeatedly swapping adjacent elements. **Efficiency**: O(n²).",
+          "description": "**Purpose**: Sort array by repeatedly swapping adjacent elements. **Process**: Compare pairs, swap if wrong order, repeat until no swaps needed. **Efficiency**: O(n²) - slow but easy to understand. Name comes from small elements \"bubbling\" to top.",
           "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Stack",
+          "japanese": "スタック",
+          "roomaji": "sutakku",
+          "description": "**Concept**: LIFO (Last In, First Out) data structure. Think of stack of plates - you can only add/remove from the top. **Applications**: Function calls, expression evaluation, undo operations, browser history.",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Push",
+          "japanese": "プッシュ",
+          "roomaji": "pusshu",
+          "description": "**Operation**: Add element to top of stack. **Process**: 1) Check if stack is full. 2) Increment top pointer. 3) Store new element at top position. **Example**: Push(5) onto stack [1,2,3] → [1,2,3,5]",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Pop",
+          "japanese": "ポップ",
+          "roomaji": "poppu",
+          "description": "**Operation**: Remove and return top element. **Process**: 1) Check if stack is empty. 2) Store top element in temporary variable. 3) Decrement top pointer. 4) Return stored element. **Example**: Pop() from [1,2,3,5] → returns 5, stack becomes [1,2,3]",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Top/Peek",
+          "japanese": "トップ/ピーク",
+          "roomaji": "toppu/piiku",
+          "description": "**Operation**: View top element without removing it. **Use**: Check what's on top before deciding to pop. **Example**: Top() of [1,2,3,5] returns 5, but stack remains [1,2,3,5]",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Stack Overflow",
+          "japanese": "スタックオーバーフロー",
+          "roomaji": "sutakku oobaa furoo",
+          "description": "**Problem**: Trying to push when stack is full. **Causes**: Infinite recursion, too many function calls. **Prevention**: Check stack size, increase stack limit, optimize recursive algorithms.",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Stack Underflow",
+          "japanese": "スタックアンダーフロー",
+          "roomaji": "sutakku andaa furoo",
+          "description": "**Problem**: Trying to pop from empty stack. **Prevention**: Always check if stack is empty before popping. **Error Handling**: Return error code or throw exception.",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Binary Tree",
+          "japanese": "二分木",
+          "roomaji": "nibunki",
+          "description": "**Definition**: Tree where each node has at most 2 children (left and right). **Terminology**: Root (top node), Leaf (node with no children), Height (longest path from root to leaf). **Applications**: Decision trees, expression parsing, file systems.",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Binary Search Tree (BST)",
+          "japanese": "二分探索木",
+          "roomaji": "nibun tansakuki",
+          "description": "**Property**: Left child < Parent < Right child for all nodes. **Advantage**: Search, insert, delete in O(log n) average time. **Traversal**: In-order traversal gives sorted sequence. **Problem**: Can become unbalanced, degrading to O(n) performance.",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "AVL Tree",
+          "japanese": "AVL木",
+          "roomaji": "AVL ki",
+          "description": "**Definition**: Self-balancing BST where height difference between left and right subtrees ≤ 1. **Inventor**: Adelson-Velsky and Landis. **Advantage**: Guarantees O(log n) operations. **Maintenance**: Performs rotations during insert/delete to maintain balance.",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Tree Traversal",
+          "japanese": "木の走査",
+          "roomaji": "ki no sousa",
+          "description": "**In-order**: Left → Root → Right (gives sorted order for BST). **Pre-order**: Root → Left → Right (good for copying tree). **Post-order**: Left → Right → Root (good for deleting tree). **Level-order**: Visit nodes level by level (uses queue).",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Recursion",
+          "japanese": "再帰",
+          "roomaji": "saiki",
+          "description": "**Definition**: Function that calls itself with simpler input. **Requirements**: 1) Base case (stopping condition). 2) Recursive case (calls itself). **Example**: factorial(n) = n × factorial(n-1), base: factorial(0) = 1",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Base Case",
+          "japanese": "基底条件",
+          "roomaji": "kitei jouken",
+          "description": "**Purpose**: Prevents infinite recursion. **Examples**: factorial(0) = 1, fibonacci(0) = 0, fibonacci(1) = 1. **Importance**: Without base case, program crashes with stack overflow.",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Recursive Case",
+          "japanese": "再帰的場合",
+          "roomaji": "saikiteki baai",
+          "description": "**Purpose**: Breaks problem into smaller subproblems. **Design**: Each recursive call should be closer to base case. **Example**: factorial(5) → 5 × factorial(4) → 5 × 4 × factorial(3) → ...",
+          "category": "Algorithms & Data Structures"
+        },
+        {
+          "english": "Stack Frame",
+          "japanese": "スタックフレーム",
+          "roomaji": "sutakku fureimu",
+          "description": "**Definition**: Memory space for each function call. **Contents**: Local variables, parameters, return address. **Problem**: Deep recursion can exhaust memory. **Solution**: Use iteration or tail recursion optimization.",
+          "category": "Algorithms & Data Structures"
+        }
+      ]
+    },
+    {
+      "name": "Computer Architecture & Performance",
+      "japaneseName": "コンピュータアーキテクチャ・性能",
+      "terms": [
+        {
+          "english": "CPI (Cycles Per Instruction)",
+          "japanese": "命令当たりサイクル数",
+          "roomaji": "meirei atari saikuru suu",
+          "description": "**Definition**: Average number of clock cycles needed to execute one instruction. **Calculation**: CPI = Total Cycles / Total Instructions. **Factors**: Instruction complexity, pipeline efficiency, cache hits/misses. **Typical Values**: 1-4 for modern CPUs.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Clock Frequency",
+          "japanese": "クロック周波数",
+          "roomaji": "kurokku shuuhasuu",
+          "description": "**Definition**: Number of clock cycles per second, measured in Hz. **Modern CPUs**: 2-5 GHz (billion cycles/second). **Relationship**: Higher frequency ≠ always better performance due to CPI differences. **Limitations**: Heat, power consumption increase with frequency.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Processing Time",
+          "japanese": "処理時間",
+          "roomaji": "shori jikan",
+          "description": "**Formula**: Time = (Instructions × CPI) / Clock_Frequency. **Example**: 1M instructions, CPI=2, 1GHz clock → Time = (1M × 2) / 1G = 2ms. **Optimization**: Reduce instructions, lower CPI, or increase frequency.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Throughput",
+          "japanese": "スループット",
+          "roomaji": "suruuputto",
+          "description": "**Definition**: Amount of work completed per unit time. **Measurement**: Instructions per second, transactions per second. **Vs Latency**: Throughput = how much work, Latency = how fast individual task. **Improvement**: Parallel processing, pipelining.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Cache Memory",
+          "japanese": "キャッシュメモリ",
+          "roomaji": "kyasshu memori",
+          "description": "**Purpose**: High-speed buffer between CPU and main memory. **Principle**: Frequently used data stored in fast, small cache. **Hierarchy**: L1 (fastest, smallest) → L2 → L3 → Main Memory (slowest, largest). **Hit Rate**: Percentage of requests served from cache.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Virtual Memory",
+          "japanese": "仮想メモリ",
+          "roomaji": "kasou memori",
+          "description": "**Purpose**: Makes physical memory appear larger using disk storage. **Mechanism**: OS swaps unused pages to disk. **Benefits**: Programs can be larger than physical memory, memory protection between processes. **Page Fault**: When needed page not in memory.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Paging",
+          "japanese": "ページング",
+          "roomaji": "peeji-ngu",
+          "description": "**Concept**: Divide memory into fixed-size pages (typically 4KB). **Page Table**: Maps virtual addresses to physical addresses. **TLB**: Translation Lookaside Buffer caches page table entries for speed. **Advantage**: Eliminates external fragmentation.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Memory Hierarchy",
+          "japanese": "メモリ階層",
+          "roomaji": "memori kaisou",
+          "description": "**Levels**: Registers (fastest) → L1 Cache → L2 Cache → L3 Cache → Main Memory → Secondary Storage (slowest). **Principle**: Smaller = faster = more expensive. **Locality**: Temporal (recently used) and spatial (nearby addresses) locality of reference.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Multiprocessor",
+          "japanese": "マルチプロセッサ",
+          "roomaji": "maruchi purosessa",
+          "description": "**Definition**: System with multiple CPUs working together. **Types**: Shared memory (SMP) vs Distributed memory (cluster). **Coordination**: Synchronization, communication between processors. **Challenges**: Load balancing, synchronization overhead.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Speedup",
+          "japanese": "速度向上",
+          "roomaji": "sokudo koujou",
+          "description": "**Definition**: Performance improvement from parallelization. **Formula**: Speedup = Time_sequential / Time_parallel. **Ideal**: Linear speedup (2x processors = 2x speedup). **Reality**: Usually less due to overhead and sequential portions.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Efficiency",
+          "japanese": "効率",
+          "roomaji": "kouritu",
+          "description": "**Formula**: E = 1/(1-r+r/n) where r = parallelizable fraction, n = processors. **Amdahl's Law**: Limits maximum speedup based on sequential portion. **Example**: 90% parallelizable, 3 processors → E = 1/(0.1+0.9/3) = 2.31x speedup.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Load Balancing",
+          "japanese": "負荷分散",
+          "roomaji": "fuka bunsan",
+          "description": "**Purpose**: Distribute work evenly among processors. **Static**: Work divided before execution. **Dynamic**: Work redistributed during execution. **Challenges**: Communication overhead, varying task complexity.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "MTBF (Mean Time Between Failures)",
+          "japanese": "平均故障間隔",
+          "roomaji": "heikin koshhou kankaku",
+          "description": "**Definition**: Average operating time between system failures. **Calculation**: MTBF = Total Operating Time / Number of Failures. **Example**: System runs 8760 hours with 2 failures → MTBF = 4380 hours. **Use**: Predicting maintenance schedules.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "MTTR (Mean Time To Repair)",
+          "japanese": "平均修理時間",
+          "roomaji": "heikin shuuri jikan",
+          "description": "**Definition**: Average time to restore system after failure. **Includes**: Detection time, repair time, testing time. **Factors**: Spare parts availability, technician skill, system complexity. **Goal**: Minimize MTTR through good design and procedures.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Availability",
+          "japanese": "可用性",
+          "roomaji": "kayou-sei",
+          "description": "**Formula**: Availability = MTBF / (MTBF + MTTR). **Expression**: Usually percentage (99.9% = 8.76 hours downtime/year). **High Availability**: 99.99% (52.6 minutes downtime/year). **Improvement**: Increase MTBF, decrease MTTR, add redundancy.",
+          "category": "Computer Architecture & Performance"
+        },
+        {
+          "english": "Redundancy",
+          "japanese": "冗長性",
+          "roomaji": "jouchou-sei",
+          "description": "**Definition**: Backup components to prevent single points of failure. **Types**: Active (hot standby), Passive (cold standby), N+1 (N working + 1 spare). **Cost**: Extra hardware, but essential for critical systems.",
+          "category": "Computer Architecture & Performance"
+        }
+      ]
+    },
+    {
+      "name": "Operating Systems",
+      "japaneseName": "オペレーティングシステム",
+      "terms": [
+        {
+          "english": "Process",
+          "japanese": "プロセス",
+          "roomaji": "purosesu",
+          "description": "**Definition**: Program in execution with its own memory space. **Components**: Code, data, stack, heap, process control block (PCB). **vs Thread**: Process = heavy, isolated; Thread = light, shared memory. **Creation**: Fork (Unix), CreateProcess (Windows).",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Process State",
+          "japanese": "プロセス状態",
+          "roomaji": "purosesu joutai",
+          "description": "**New**: Process being created. **Ready**: Waiting for CPU assignment. **Running**: Currently executing. **Waiting**: Blocked for I/O or event. **Terminated**: Execution completed. **Transitions**: Scheduler moves processes between states.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Ready State",
+          "japanese": "実行可能状態",
+          "roomaji": "jikkou kanou joutai",
+          "description": "**Definition**: Process has all resources except CPU. **Ready Queue**: List of ready processes waiting for CPU. **Scheduler**: Selects which ready process runs next. **Priority**: Higher priority processes selected first.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Running State",
+          "japanese": "実行状態",
+          "roomaji": "jikkou joutai",
+          "description": "**Definition**: Process currently using CPU. **Single CPU**: Only one process can be running. **Time Slice**: Maximum time process can run before preemption. **Context Switch**: Save state when switching to another process.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Waiting State",
+          "japanese": "待ち状態",
+          "roomaji": "machi joutai",
+          "description": "**Causes**: I/O operations, waiting for resources, synchronization. **Blocking**: Process cannot continue until event occurs. **Wake up**: When event occurs, process moves to ready state. **Types**: Interruptible vs uninterruptible waiting.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Context Switching",
+          "japanese": "コンテキストスイッチ",
+          "roomaji": "kontekisuto suicchi",
+          "description": "**Definition**: Saving current process state and loading another process state. **Overhead**: Time spent switching is not productive work. **What's Saved**: Registers, program counter, stack pointer, memory management info. **Triggers**: Time slice expiry, I/O request, interrupts.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Memory Allocation",
+          "japanese": "メモリ割り当て",
+          "roomaji": "memori wari-ate",
+          "description": "**Static**: Fixed size allocated at compile time. **Dynamic**: Variable size allocated at runtime (malloc/free). **Heap**: Dynamic memory region. **Stack**: Function call memory (automatic allocation/deallocation).",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Memory Protection",
+          "japanese": "メモリ保護",
+          "roomaji": "memori hogo",
+          "description": "**Purpose**: Prevent processes from accessing each other's memory. **Mechanisms**: Base and bound registers, page tables with permissions. **Protection Bits**: Read, Write, Execute permissions. **Violation**: Segmentation fault, access violation.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Memory Fragmentation",
+          "japanese": "メモリ断片化",
+          "roomaji": "memori danpen-ka",
+          "description": "**Internal**: Allocated memory larger than requested. **External**: Free memory scattered in small chunks. **Solutions**: Compaction, paging, buddy system. **Problem**: Cannot allocate large blocks despite sufficient total free memory.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Page Replacement",
+          "japanese": "ページ置換",
+          "roomaji": "peeji chikan",
+          "description": "**Need**: When physical memory full and new page needed. **LRU**: Replace least recently used page. **FIFO**: Replace oldest page. **Optimal**: Replace page not used for longest time (theoretical). **Clock**: Approximation of LRU using reference bits.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Real-Time System",
+          "japanese": "リアルタイムシステム",
+          "roomaji": "riaru taimu shisutemu",
+          "description": "**Definition**: System where correctness depends on both result and timing. **Examples**: Flight control, medical devices, industrial automation. **Constraints**: Must respond within specified deadlines. **Predictability**: More important than average performance.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Hard Real-Time",
+          "japanese": "ハードリアルタイム",
+          "roomaji": "haado riaru taimu",
+          "description": "**Definition**: Missing deadline causes system failure. **Examples**: Anti-lock brakes, airbag deployment, nuclear reactor control. **Guarantee**: System must prove it will always meet deadlines. **Design**: Conservative resource allocation, deterministic behavior.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Soft Real-Time",
+          "japanese": "ソフトリアルタイム",
+          "roomaji": "sofuto riaru taimu",
+          "description": "**Definition**: Missing deadline degrades performance but doesn't cause failure. **Examples**: Video streaming, audio playback, web servers. **Tolerance**: Occasional deadline misses acceptable. **Optimization**: Best effort to meet deadlines.",
+          "category": "Operating Systems"
+        },
+        {
+          "english": "Deadline",
+          "japanese": "デッドライン",
+          "roomaji": "deddo rain",
+          "description": "**Definition**: Time by which task must complete. **Types**: Absolute (specific time), Relative (time from start). **Scheduling**: Priority often based on deadline urgency. **Miss**: Task completes after deadline (late).",
+          "category": "Operating Systems"
+        }
+      ]
+    },
+    {
+      "name": "Network & Communication",
+      "japaneseName": "ネットワーク・通信",
+      "terms": [
+        {
+          "english": "TCP/IP",
+          "japanese": "TCP/IP",
+          "roomaji": "TCP/IP",
+          "description": "**Definition**: Internet protocol suite with 4 layers. **Reliability**: TCP provides reliable, ordered delivery. **Routing**: IP provides addressing and routing. **Ubiquity**: Foundation of internet communication. **Layers**: Application, Transport, Internet, Link.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "HTTP",
+          "japanese": "HTTP",
+          "roomaji": "HTTP",
+          "description": "**Purpose**: Web page transfer protocol. **Port**: 80 (HTTP), 443 (HTTPS). **Methods**: GET (retrieve), POST (send data), PUT (update), DELETE (remove). **Stateless**: Each request independent. **HTTPS**: HTTP over SSL/TLS for security.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "FTP",
+          "japanese": "FTP",
+          "roomaji": "FTP",
+          "description": "**Purpose**: File transfer protocol. **Ports**: 20 (data), 21 (control). **Modes**: Active (server connects to client), Passive (client connects to server). **Authentication**: Username/password required. **Binary/ASCII**: Different transfer modes for different file types.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "SMTP",
+          "japanese": "SMTP",
+          "roomaji": "SMTP",
+          "description": "**Purpose**: Email sending protocol. **Port**: 25 (standard), 587 (submission). **Process**: Client connects to server, authenticates, sends message. **Relay**: Messages passed between mail servers. **Security**: STARTTLS for encryption.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "POP3",
+          "japanese": "POP3",
+          "roomaji": "POP3",
+          "description": "**Purpose**: Email retrieval protocol. **Port**: 110 (POP3), 995 (POP3S). **Behavior**: Downloads emails to client, deletes from server. **Limitation**: Single device access. **vs IMAP**: IMAP keeps emails on server for multi-device access.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "IPv4 Address",
+          "japanese": "IPv4アドレス",
+          "roomaji": "IPv4 adoresu",
+          "description": "**Format**: 32-bit address written as 4 octets (192.168.1.1). **Classes**: A (1-126), B (128-191), C (192-223). **Private**: 10.x.x.x, 172.16-31.x.x, 192.168.x.x. **Limitation**: Only 4.3 billion addresses.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Subnet Mask",
+          "japanese": "サブネットマスク",
+          "roomaji": "sabunetuto masuku",
+          "description": "**Purpose**: Separates network and host portions of IP address. **Format**: 255.255.255.0 or /24 (CIDR notation). **Calculation**: Binary AND with IP address gives network address. **Example**: 192.168.1.5/24 → network 192.168.1.0, host 5.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "CIDR Notation",
+          "japanese": "CIDR記法",
+          "roomaji": "CIDR kihou",
+          "description": "**Format**: IP/prefix_length (192.168.1.0/24). **Meaning**: /24 = first 24 bits are network, last 8 bits are host. **Hosts**: 2^(32-prefix) - 2 (subtract network and broadcast). **Example**: /24 = 254 hosts, /25 = 126 hosts.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Subnetting",
+          "japanese": "サブネット分割",
+          "roomaji": "sabunetuto bunkatsu",
+          "description": "**Purpose**: Divide large network into smaller subnetworks. **Benefits**: Better security, reduced broadcast traffic, efficient IP usage. **Process**: Borrow host bits for subnet bits. **Example**: 192.168.1.0/24 → 192.168.1.0/26, 192.168.1.64/26, etc.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Routing Table",
+          "japanese": "ルーティングテーブル",
+          "roomaji": "ruutingu teeburu",
+          "description": "**Contents**: Destination network, next hop, interface, metric. **Lookup**: Find longest prefix match for destination. **Updates**: Static (manual) or dynamic (routing protocols). **Default Route**: 0.0.0.0/0 catches all unmatched destinations.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Default Gateway",
+          "japanese": "デフォルトゲートウェイ",
+          "roomaji": "deforutio geeto wei",
+          "description": "**Purpose**: Router that forwards traffic to other networks. **Configuration**: Set in device's IP settings. **Function**: When destination not on local network, send to default gateway. **Example**: Home router is default gateway for devices.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Longest Prefix Match",
+          "japanese": "最長プレフィックスマッチ",
+          "roomaji": "saichou purefikkusu macchi",
+          "description": "**Principle**: Choose route with most specific (longest) network prefix. **Example**: Packet to 192.168.1.5 matches 192.168.1.0/24 over 192.168.0.0/16. **Reason**: More specific routes are more accurate. **Tie-breaking**: Use metric if prefixes equal length.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Hop Count",
+          "japanese": "ホップ数",
+          "roomaji": "hoppu-suu",
+          "description": "**Definition**: Number of routers packet traverses to reach destination. **Metric**: Used by some routing protocols (RIP). **Limitation**: Doesn't consider link speed or congestion. **Maximum**: RIP limits to 15 hops (16 = unreachable).",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "MTU (Maximum Transmission Unit)",
+          "japanese": "最大転送単位",
+          "roomaji": "saidai tensou tan'i",
+          "description": "**Definition**: Largest packet size that can be transmitted without fragmentation. **Ethernet**: 1500 bytes typical. **Discovery**: Path MTU discovery finds smallest MTU along route. **Fragmentation**: Large packets split into smaller pieces if MTU exceeded.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Packet Fragmentation",
+          "japanese": "パケット断片化",
+          "roomaji": "paketto danpen-ka",
+          "description": "**Need**: When packet larger than link MTU. **Process**: Split into fragments with fragment headers. **Reassembly**: Destination collects all fragments. **Problem**: Lost fragment = retransmit entire packet. **IPv6**: Source must do fragmentation.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Bandwidth",
+          "japanese": "帯域幅",
+          "roomaji": "taiiki-haba",
+          "description": "**Definition**: Maximum data rate of communication channel. **Units**: bps (bits per second), Mbps, Gbps. **vs Throughput**: Bandwidth = theoretical maximum, Throughput = actual achieved. **Factors**: Protocol overhead, congestion, errors affect throughput.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Latency",
+          "japanese": "遅延",
+          "roomaji": "chien",
+          "description": "**Definition**: Time delay for data to travel from source to destination. **Components**: Propagation (distance/speed), transmission (packet_size/bandwidth), processing, queuing. **Types**: Round-trip time (RTT) = time for packet + acknowledgment.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "MIME",
+          "japanese": "MIME",
+          "roomaji": "MIME",
+          "description": "**Purpose**: Multipurpose Internet Mail Extensions for non-text content. **Encoding**: Base64 for binary data, Quoted-printable for text. **Headers**: Content-Type, Content-Encoding specify format. **Attachments**: Files encoded and embedded in email.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Base64 Encoding",
+          "japanese": "Base64符号化",
+          "roomaji": "Base64 fugou-ka",
+          "description": "**Purpose**: Convert binary data to text for email transmission. **Process**: 3 bytes → 4 ASCII characters. **Efficiency**: 25% size increase (4/3 ratio). **Example**: 30KB file → 40KB encoded. **Characters**: A-Z, a-z, 0-9, +, / (64 total).",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Mail Server",
+          "japanese": "メールサーバー",
+          "roomaji": "meeru saabaa",
+          "description": "**Types**: SMTP (outgoing), POP3/IMAP (incoming). **Functions**: Store, forward, deliver emails. **Authentication**: Username/password, certificates. **Security**: SSL/TLS encryption, spam filtering, virus scanning. **Relay**: Forward emails between different domains.",
+          "category": "Network & Communication"
+        },
+        {
+          "english": "Email Header",
+          "japanese": "メールヘッダー",
+          "roomaji": "meeru heddaa",
+          "description": "**Contents**: From, To, Subject, Date, Message-ID. **Routing**: Received headers show path through servers. **Hidden**: Many headers not shown to users. **Analysis**: Headers help debug delivery problems and trace spam.",
+          "category": "Network & Communication"
+        }
+      ]
+    },
+    {
+      "name": "Database Systems",
+      "japaneseName": "データベースシステム",
+      "terms": [
+        {
+          "english": "Entity-Relationship Model",
+          "japanese": "エンティティ関係モデル",
+          "roomaji": "entiti kankei moderu",
+          "description": "**Purpose**: Visual method for database design. **Components**: Entities (things), Attributes (properties), Relationships (connections). **Notation**: Rectangles = entities, Ovals = attributes, Diamonds = relationships. **Cardinality**: One-to-one, one-to-many, many-to-many relationships.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Primary Key",
+          "japanese": "主キー",
+          "roomaji": "shu kii",
+          "description": "**Definition**: Unique identifier for each row in table. **Properties**: Cannot be NULL, cannot duplicate, should not change. **Purpose**: Ensures entity integrity, used in relationships. **Example**: StudentID in Students table, OrderID in Orders table.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Foreign Key",
+          "japanese": "外部キー",
+          "roomaji": "gaibu kii",
+          "description": "**Definition**: Column that references primary key in another table. **Purpose**: Maintains referential integrity between tables. **Rules**: Must match existing primary key or be NULL. **Example**: CustomerID in Orders table references CustomerID in Customers table.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Composite Key",
+          "japanese": "複合キー",
+          "roomaji": "fukugou kii",
+          "description": "**Definition**: Primary key consisting of multiple columns. **Use**: When no single column uniquely identifies row. **Example**: (StudentID, CourseID) in Enrollment table. **Advantage**: Natural identification, **Disadvantage**: More complex joins.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "First Normal Form (1NF)",
+          "japanese": "第一正規形",
+          "roomaji": "dai-ichi seiki-kei",
+          "description": "**Rule**: Eliminate repeating groups, each cell contains single value. **Problem**: Multiple values in one field. **Solution**: Create separate rows for each value. **Example**: Instead of \"Skills: Java, Python, C++\" use separate rows for each skill.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Second Normal Form (2NF)",
+          "japanese": "第二正規形",
+          "roomaji": "dai-ni seiki-kei",
+          "description": "**Rule**: Must be 1NF + eliminate partial dependencies. **Problem**: Non-key attributes depend on part of composite key. **Solution**: Split table to remove partial dependencies. **Example**: If (StudentID, CourseID) → Grade, but CourseID → CourseName, move CourseName to separate table.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Third Normal Form (3NF)",
+          "japanese": "第三正規形",
+          "roomaji": "dai-san seiki-kei",
+          "description": "**Rule**: Must be 2NF + eliminate transitive dependencies. **Problem**: Non-key attribute depends on another non-key attribute. **Solution**: Move transitively dependent attributes to separate table. **Example**: StudentID → DepartmentID → DepartmentName, move DepartmentName to Department table.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Denormalization",
+          "japanese": "非正規化",
+          "roomaji": "hi seiki-ka",
+          "description": "**Purpose**: Intentionally violate normalization for performance. **Trade-off**: Faster queries vs data redundancy. **When**: Read-heavy systems, data warehouses. **Risks**: Update anomalies, storage overhead, consistency problems.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "DDL (Data Definition Language)",
+          "japanese": "データ定義言語",
+          "roomaji": "deeta teigi gen-go",
+          "description": "**Commands**: CREATE, ALTER, DROP. **Purpose**: Define database structure. **CREATE**: Make new tables, indexes, views. **ALTER**: Modify existing structure. **DROP**: Delete database objects. **Permissions**: Usually require administrator privileges.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "DML (Data Manipulation Language)",
+          "japanese": "データ操作言語",
+          "roomaji": "deeta sousa gen-go",
+          "description": "**Commands**: SELECT, INSERT, UPDATE, DELETE. **Purpose**: Manipulate data within tables. **SELECT**: Query data. **INSERT**: Add new rows. **UPDATE**: Modify existing rows. **DELETE**: Remove rows. **Transactions**: Changes can be rolled back.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "CASCADE",
+          "japanese": "カスケード",
+          "roomaji": "kasukedo",
+          "description": "**Purpose**: Automatically perform related operations. **ON DELETE CASCADE**: When parent deleted, delete children. **ON UPDATE CASCADE**: When parent key updated, update children. **Example**: Delete customer → automatically delete all their orders. **Risk**: Unintended data loss if not careful.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "INNER JOIN",
+          "japanese": "内部結合",
+          "roomaji": "naibu ketsu-gou",
+          "description": "**Purpose**: Return rows that have matching values in both tables. **Syntax**: SELECT * FROM A INNER JOIN B ON A.id = B.id. **Result**: Only matching rows included. **Use**: Most common join type for related data.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "LEFT JOIN",
+          "japanese": "左外部結合",
+          "roomaji": "hidari gaibu ketsu-gou",
+          "description": "**Purpose**: Return all rows from left table, matching rows from right. **NULL**: Right table columns are NULL for unmatched rows. **Use**: Find all customers, even those without orders. **Syntax**: FROM Customers LEFT JOIN Orders ON Customer.ID = Orders.CustomerID.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Index",
+          "japanese": "インデックス",
+          "roomaji": "indekkusu",
+          "description": "**Purpose**: Speed up queries by creating sorted reference to data. **Types**: B-tree (balanced), Hash (exact match), Bitmap (low cardinality). **Trade-off**: Faster SELECT, slower INSERT/UPDATE/DELETE. **Clustering**: Physical order matches index order.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Query Optimization",
+          "japanese": "クエリ最適化",
+          "roomaji": "kueri saiteki-ka",
+          "description": "**Purpose**: Find most efficient execution plan. **Optimizer**: Database engine component that chooses plan. **Factors**: Available indexes, table statistics, join order. **Hints**: Manual suggestions to optimizer (use carefully).",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Transaction",
+          "japanese": "トランザクション",
+          "roomaji": "toranzakushon",
+          "description": "**ACID**: Atomicity (all or nothing), Consistency (valid state), Isolation (concurrent safety), Durability (permanent). **BEGIN/COMMIT**: Start and confirm transaction. **ROLLBACK**: Undo changes. **Concurrency**: Multiple transactions simultaneously.",
+          "category": "Database Systems"
+        },
+        {
+          "english": "Deadlock",
+          "japanese": "デッドロック",
+          "roomaji": "deddo rokku",
+          "description": "**Problem**: Two transactions each waiting for resources held by the other. **Detection**: Database monitors for circular wait conditions. **Resolution**: Abort one transaction, let other complete. **Prevention**: Always acquire locks in same order.",
+          "category": "Database Systems"
+        }
+      ]
+    },
+    {
+      "name": "Software Engineering",
+      "japaneseName": "ソフトウェア工学",
+      "terms": [
+        {
+          "english": "Waterfall Model",
+          "japanese": "ウォーターフォールモデル",
+          "roomaji": "wootaa fooru moderu",
+          "description": "**Process**: Sequential phases: Requirements → Design → Implementation → Testing → Maintenance. **Advantage**: Clear structure, easy to manage. **Disadvantage**: Inflexible to changes, late feedback. **Use**: Stable requirements, regulated industries.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Agile Development",
+          "japanese": "アジャイル開発",
+          "roomaji": "ajairu kaihatsu",
+          "description": "**Principles**: Individuals over processes, working software over documentation, customer collaboration, responding to change. **Iterations**: Short cycles (1-4 weeks). **Benefits**: Flexible, early feedback, continuous improvement. **Frameworks**: Scrum, Kanban, XP.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Scrum",
+          "japanese": "スクラム",
+          "roomaji": "sukuramu",
+          "description": "**Roles**: Product Owner (requirements), Scrum Master (facilitator), Team (developers). **Events**: Sprint Planning, Daily Standup, Sprint Review, Retrospective. **Artifacts**: Product Backlog, Sprint Backlog, Increment. **Sprint**: Fixed time period (usually 2-4 weeks).",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Extreme Programming (XP)",
+          "japanese": "エクストリームプログラミング",
+          "roomaji": "ekusutoriimu puroguramingu",
+          "description": "**Practices**: Pair programming, test-driven development, continuous integration, refactoring. **Values**: Communication, simplicity, feedback, courage. **Planning**: Release planning, iteration planning. **Code**: Collective ownership, coding standards.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Software Metrics",
+          "japanese": "ソフトウェア指標",
+          "roomaji": "sofuto wea shihyou",
+          "description": "**Code Metrics**: Lines of code, cyclomatic complexity, coupling, cohesion. **Process Metrics**: Defect density, test coverage, velocity. **Purpose**: Measure quality, predict problems, track improvement. **KLOC**: Thousand Lines of Code (common unit).",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Defect Density",
+          "japanese": "欠陥密度",
+          "roomaji": "kekkan mitsudo",
+          "description": "**Formula**: Defects / KLOC (thousand lines of code). **Benchmark**: <1 defect/KLOC = good quality. **Tracking**: Monitor throughout development lifecycle. **Types**: Syntax errors, logic errors, integration errors, performance issues.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Test Coverage",
+          "japanese": "テストカバレッジ",
+          "roomaji": "tesuto kabareeji",
+          "description": "**Definition**: Percentage of code executed by tests. **Types**: Statement coverage, branch coverage, path coverage. **Tools**: Automated tools measure coverage. **Goal**: Usually 80-90% coverage target. **Quality**: High coverage ≠ good tests (need meaningful assertions).",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Code Review",
+          "japanese": "コードレビュー",
+          "roomaji": "koodo rebyuu",
+          "description": "**Purpose**: Find defects, improve code quality, share knowledge. **Types**: Formal (structured process), informal (pair programming). **Benefits**: Early defect detection, knowledge transfer, coding standard enforcement. **Tools**: GitHub pull requests, Crucible, Review Board.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Unit Testing",
+          "japanese": "単体テスト",
+          "roomaji": "tantai tesuto",
+          "description": "**Scope**: Individual components/functions in isolation. **Tools**: JUnit (Java), NUnit (.NET), pytest (Python). **Mocking**: Replace dependencies with controlled substitutes. **Benefits**: Fast feedback, regression prevention, documentation.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Integration Testing",
+          "japanese": "結合テスト",
+          "roomaji": "ketsu-gou tesuto",
+          "description": "**Scope**: Test component interactions. **Types**: Big Bang (all at once), Incremental (gradual), Top-down, Bottom-up. **Challenges**: Interface problems, data format issues, timing problems. **Environment**: Often requires test databases, external services.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "System Testing",
+          "japanese": "システムテスト",
+          "roomaji": "shisutemu tesuto",
+          "description": "**Scope**: Complete integrated system. **Environment**: Production-like test environment. **Types**: Functional testing, performance testing, security testing, usability testing. **User Acceptance**: Customer validates system meets requirements.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Black Box Testing",
+          "japanese": "ブラックボックステスト",
+          "roomaji": "burakku bokkusu tesuto",
+          "description": "**Approach**: Test without knowing internal implementation. **Focus**: Input-output behavior, requirements compliance. **Techniques**: Equivalence partitioning, boundary value analysis, decision tables. **Advantage**: User perspective, unbiased by implementation.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "White Box Testing",
+          "japanese": "ホワイトボックステスト",
+          "roomaji": "howaito bokkusu tesuto",
+          "description": "**Approach**: Test with full knowledge of internal structure. **Focus**: Code paths, conditions, loops. **Techniques**: Statement coverage, branch coverage, path coverage. **Advantage**: Thorough testing of all code paths.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "PERT Chart",
+          "japanese": "PERT図",
+          "roomaji": "PERT-zu",
+          "description": "**Purpose**: Project scheduling using network diagram. **Components**: Activities (arrows), events (nodes), dependencies. **Critical Path**: Longest path through network (determines minimum project time). **Float**: Extra time available for non-critical activities.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Critical Path Method (CPM)",
+          "japanese": "クリティカルパス法",
+          "roomaji": "kuritikaru pasu-hou",
+          "description": "**Definition**: Sequence of activities that determines minimum project duration. **Calculation**: Forward pass (earliest start/finish), backward pass (latest start/finish). **Float**: Difference between latest and earliest times. **Management**: Focus resources on critical path activities.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Gantt Chart",
+          "japanese": "ガント図",
+          "roomaji": "ganto-zu",
+          "description": "**Purpose**: Visual timeline showing project schedule. **Components**: Tasks (bars), dependencies (arrows), milestones (diamonds), resources. **Benefits**: Easy to understand, shows progress, identifies conflicts. **Tools**: Microsoft Project, Smartsheet, Asana.",
+          "category": "Software Engineering"
+        },
+        {
+          "english": "Work Breakdown Structure (WBS)",
+          "japanese": "作業分解構造",
+          "roomaji": "sagyou bunkai kouzou",
+          "description": "**Purpose**: Hierarchical decomposition of project into manageable tasks. **Levels**: Project → Phases → Deliverables → Work Packages → Activities. **100% Rule**: Lower levels must completely account for upper level. **Estimation**: Easier to estimate small tasks.",
+          "category": "Software Engineering"
+        }
+      ]
+    },
+    {
+      "name": "Security",
+      "japaneseName": "セキュリティ",
+      "terms": [
+        {
+          "english": "Encryption",
+          "japanese": "暗号化",
+          "roomaji": "angou-ka",
+          "description": "**Purpose**: Convert plaintext to ciphertext to protect confidentiality. **Types**: Symmetric (same key), Asymmetric (public/private keys). **Algorithms**: AES (symmetric), RSA (asymmetric). **Strength**: Key length determines difficulty to break.",
+          "category": "Security"
+        },
+        {
+          "english": "Digital Certificate",
+          "japanese": "デジタル証明書",
+          "roomaji": "dejitaru shoumei-sho",
+          "description": "**Purpose**: Electronic credential that proves identity. **Contents**: Public key, owner identity, issuer signature, validity period. **CA**: Certificate Authority issues and signs certificates. **Chain**: Certificates form trust chain to root CA.",
+          "category": "Security"
+        },
+        {
+          "english": "PKI (Public Key Infrastructure)",
+          "japanese": "公開鍵基盤",
+          "roomaji": "koukai kagi kiban",
+          "description": "**Components**: Certificate Authority (CA), Registration Authority (RA), Certificate Repository, Key Recovery. **Trust Model**: Hierarchical (tree), Mesh (cross-certification), Web of Trust. **Lifecycle**: Key generation, certificate issuance, renewal, revocation.",
+          "category": "Security"
+        },
+        {
+          "english": "Hash Function",
+          "japanese": "ハッシュ関数",
+          "roomaji": "hasshu kansuu",
+          "description": "**Properties**: One-way (irreversible), deterministic, fixed output size, avalanche effect. **Uses**: Password storage, digital signatures, data integrity. **Algorithms**: SHA-256, SHA-3, MD5 (deprecated). **Collision**: When two inputs produce same hash (should be rare).",
+          "category": "Security"
+        },
+        {
+          "english": "Firewall",
+          "japanese": "ファイアウォール",
+          "roomaji": "faia wooru",
+          "description": "**Purpose**: Control network traffic based on security rules. **Types**: Packet filter, stateful inspection, application-level gateway. **Rules**: Allow/deny based on IP, port, protocol, application. **DMZ**: Demilitarized zone for public-facing services.",
+          "category": "Security"
+        },
+        {
+          "english": "VPN (Virtual Private Network)",
+          "japanese": "仮想プライベートネットワーク",
+          "roomaji": "kasou puraibeetо netowaaku",
+          "description": "**Purpose**: Secure connection over public network. **Protocols**: IPsec (network layer), L2TP (data link), SSL/TLS (application). **Benefits**: Encryption, authentication, access to private resources. **Types**: Site-to-site, remote access.",
+          "category": "Security"
+        },
+        {
+          "english": "IPsec",
+          "japanese": "IPsec",
+          "roomaji": "IPsec",
+          "description": "**Purpose**: Network layer security protocol suite. **Modes**: Transport (end-to-end), Tunnel (gateway-to-gateway). **Protocols**: AH (authentication), ESP (encryption + authentication). **SA**: Security Association defines security parameters.",
+          "category": "Security"
+        },
+        {
+          "english": "SSL/TLS",
+          "japanese": "SSL/TLS",
+          "roomaji": "SSL/TLS",
+          "description": "**Purpose**: Secure communication over networks (HTTPS, email, etc.). **Handshake**: Negotiate algorithms, exchange keys, authenticate. **Certificates**: Server presents certificate to prove identity. **Versions**: TLS 1.3 is current, SSL deprecated.",
+          "category": "Security"
+        },
+        {
+          "english": "SQL Injection",
+          "japanese": "SQLインジェクション",
+          "roomaji": "SQL injekushon",
+          "description": "**Attack**: Insert malicious SQL code into application inputs. **Example**: Login with username \"admin'--\" bypasses password check. **Prevention**: Parameterized queries, input validation, least privilege. **Impact**: Data theft, modification, deletion.",
+          "category": "Security"
+        },
+        {
+          "english": "XSS (Cross-Site Scripting)",
+          "japanese": "クロスサイトスクリプティング",
+          "roomaji": "kurosu saito sukuriputingu",
+          "description": "**Attack**: Inject malicious scripts into web pages viewed by other users. **Types**: Stored (persistent), Reflected (non-persistent), DOM-based. **Prevention**: Input validation, output encoding, Content Security Policy. **Impact**: Session hijacking, defacement, malware.",
+          "category": "Security"
+        },
+        {
+          "english": "CSRF (Cross-Site Request Forgery)",
+          "japanese": "クロスサイトリクエストフォージェリー",
+          "roomaji": "kurosu saito rikuesuto foojerii",
+          "description": "**Attack**: Trick user into performing unintended actions on authenticated site. **Method**: Malicious site submits form to victim site using user's credentials. **Prevention**: CSRF tokens, SameSite cookies, referrer validation. **Impact**: Unauthorized transactions, account changes.",
+          "category": "Security"
+        },
+        {
+          "english": "Cookie Security",
+          "japanese": "クッキーセキュリティ",
+          "roomaji": "kukkii sekyuriti",
+          "description": "**Secure Flag**: Only send over HTTPS connections. **HttpOnly Flag**: Prevent JavaScript access to reduce XSS impact. **SameSite**: Control cross-site cookie sending. **Expiration**: Limit cookie lifetime to reduce exposure window.",
+          "category": "Security"
+        },
+        {
+          "english": "Authentication",
+          "japanese": "認証",
+          "roomaji": "ninshou",
+          "description": "**Definition**: Verify user identity. **Factors**: Something you know (password), have (token), are (biometric). **Multi-factor**: Combine multiple factors for stronger security. **Methods**: Username/password, certificates, biometrics, tokens.",
+          "category": "Security"
+        },
+        {
+          "english": "Authorization",
+          "japanese": "認可",
+          "roomaji": "ninka",
+          "description": "**Definition**: Determine what authenticated user can access. **Models**: Discretionary (DAC), Mandatory (MAC), Role-based (RBAC). **Principle**: Least privilege - minimum necessary permissions. **Implementation**: Access control lists, capabilities.",
+          "category": "Security"
+        },
+        {
+          "english": "Single Sign-On (SSO)",
+          "japanese": "シングルサインオン",
+          "roomaji": "shinguru sain on",
+          "description": "**Purpose**: Authenticate once, access multiple systems. **Benefits**: User convenience, reduced password fatigue, centralized management. **Protocols**: SAML, OAuth, OpenID Connect. **Risk**: Single point of failure if compromised.",
+          "category": "Security"
+        },
+        {
+          "english": "Two-Factor Authentication (2FA)",
+          "japanese": "二要素認証",
+          "roomaji": "ni youso ninshou",
+          "description": "**Purpose**: Require two different authentication factors. **Common**: Password + SMS code, password + authenticator app. **Security**: Even if one factor compromised, attacker needs second. **Implementation**: Time-based tokens, hardware tokens, biometrics.",
+          "category": "Security"
+        }
+      ]
+    },
+    {
+      "name": "Business & Management",
+      "japaneseName": "ビジネス・マネジメント",
+      "terms": [
+        {
+          "english": "SLA (Service Level Agreement)",
+          "japanese": "サービスレベル合意書",
+          "roomaji": "saabisu reberu goui-sho",
+          "description": "**Definition**: Contract defining expected service performance. **Metrics**: Availability, response time, throughput, error rate. **Penalties**: Financial consequences for not meeting SLA. **Review**: Regular monitoring and reporting of SLA compliance.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Uptime",
+          "japanese": "稼働時間",
+          "roomaji": "kadou jikan",
+          "description": "**Definition**: Time system is operational and available. **Measurement**: Usually percentage (99.9% = 8.76 hours downtime/year). **Calculation**: (Total time - Downtime) / Total time. **Industry**: Cloud providers often guarantee 99.95%+ uptime.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Response Time",
+          "japanese": "応答時間",
+          "roomaji": "outou jikan",
+          "description": "**Definition**: Time between request and response. **Components**: Network latency, processing time, queue time. **SLA**: Often specified as percentile (95% of requests < 200ms). **Measurement**: Important for user experience and SLA compliance.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Throughput",
+          "japanese": "スループット",
+          "roomaji": "suruuputto",
+          "description": "**Definition**: Amount of work completed per unit time. **Units**: Requests per second, transactions per minute, data per hour. **Capacity**: Maximum sustainable throughput. **Bottleneck**: Component that limits overall throughput.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "IaaS (Infrastructure as a Service)",
+          "japanese": "IaaS",
+          "roomaji": "IaaS",
+          "description": "**Definition**: Virtualized computing resources over internet. **Includes**: Virtual machines, storage, networks, load balancers. **Examples**: AWS EC2, Azure VMs, Google Compute Engine. **Benefits**: Scalability, no hardware management, pay-per-use.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "PaaS (Platform as a Service)",
+          "japanese": "PaaS",
+          "roomaji": "PaaS",
+          "description": "**Definition**: Platform for developing, running applications. **Includes**: Runtime environment, development tools, databases. **Examples**: Google App Engine, Heroku, Azure App Service. **Benefits**: Faster development, automatic scaling, managed infrastructure.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "SaaS (Software as a Service)",
+          "japanese": "SaaS",
+          "roomaji": "SaaS",
+          "description": "**Definition**: Complete software applications delivered over internet. **Examples**: Gmail, Salesforce, Office 365, Slack. **Benefits**: No installation, automatic updates, accessible anywhere. **Pricing**: Usually subscription-based.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Hybrid Cloud",
+          "japanese": "ハイブリッドクラウド",
+          "roomaji": "haiburiddo kuraudo",
+          "description": "**Definition**: Combination of public and private cloud environments. **Benefits**: Flexibility, cost optimization, regulatory compliance. **Use Cases**: Sensitive data on-premises, burst to public cloud. **Challenge**: Management complexity, integration.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Freemium",
+          "japanese": "フリーミアム",
+          "roomaji": "furiimiamu",
+          "description": "**Model**: Basic features free, premium features paid. **Strategy**: Attract users with free tier, convert to paid. **Examples**: Spotify, Dropbox, LinkedIn. **Metrics**: Conversion rate from free to paid users.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Subscription",
+          "japanese": "サブスクリプション",
+          "roomaji": "sabusukuripushon",
+          "description": "**Model**: Recurring payment for continued access. **Benefits**: Predictable revenue, customer retention focus. **Examples**: Netflix, Adobe Creative Cloud, SaaS applications. **Challenges**: Customer churn, acquisition cost.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Marketplace",
+          "japanese": "マーケットプレイス",
+          "roomaji": "maaketo pureisu",
+          "description": "**Model**: Platform connecting buyers and sellers. **Revenue**: Commission, listing fees, advertising. **Examples**: Amazon, eBay, Airbnb, Uber. **Network Effects**: More users attract more users.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Advertising",
+          "japanese": "広告モデル",
+          "roomaji": "koukoku moderu",
+          "description": "**Model**: Free service funded by advertising revenue. **Types**: Display ads, search ads, native advertising, sponsored content. **Examples**: Google Search, Facebook, YouTube. **Metrics**: Click-through rate, cost per click.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Activity-Based Costing (ABC)",
+          "japanese": "活動基準原価計算",
+          "roomaji": "katsudou kijun genka keisan",
+          "description": "**Method**: Assign costs to activities, then to products based on activity usage. **Steps**: Identify activities, assign costs to activities, identify cost drivers, calculate rates. **Benefits**: More accurate product costs, better decision making.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Total Cost of Ownership (TCO)",
+          "japanese": "総所有コスト",
+          "roomaji": "sou shoyuu kosuto",
+          "description": "**Definition**: All costs associated with owning/operating system over its lifetime. **Components**: Purchase, implementation, training, maintenance, support, upgrades. **Purpose**: Compare alternatives, budget planning. **Hidden Costs**: Often underestimated.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Return on Investment (ROI)",
+          "japanese": "投資収益率",
+          "roomaji": "toushi shuuekiritsu",
+          "description": "**Formula**: (Gain - Investment) / Investment × 100%. **Example**: Invest $100K, gain $150K → ROI = 50%. **Use**: Compare investment alternatives, justify projects. **Limitation**: Doesn't consider time value of money.",
+          "category": "Business & Management"
+        },
+        {
+          "english": "Break-Even Analysis",
+          "japanese": "損益分岐点分析",
+          "roomaji": "son'eki bunki-ten bunseki",
+          "description": "**Purpose**: Find point where revenue equals costs. **Formula**: Fixed Costs / (Price - Variable Cost per unit). **Use**: Pricing decisions, volume planning, risk assessment. **Graph**: Shows relationship between volume, costs, and profit.",
+          "category": "Business & Management"
+        }
+      ]
+    },
+    {
+      "name": "Key Formulas & Calculations",
+      "japaneseName": "重要な公式・計算",
+      "terms": [
+        {
+          "english": "CPU Processing Time",
+          "japanese": "CPU処理時間",
+          "roomaji": "CPU shori jikan",
+          "description": "**Formula**: Time = (Instructions × CPI) / Clock_Frequency<br>**Example**: 1M instructions, CPI=2, 1GHz → Time = (1M × 2) / 1G = 2ms<br>**Units**: Instructions (count), CPI (cycles/instruction), Frequency (Hz), Time (seconds)",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "Parallel Processing Efficiency",
+          "japanese": "並列処理効率",
+          "roomaji": "heiretsu shori kouritu",
+          "description": "**Formula**: E = 1/(1-r+r/n)<br>**Variables**: r = parallelizable fraction (0-1), n = number of processors<br>**Example**: 90% parallelizable, 3 processors → E = 1/(0.1+0.9/3) = 2.31x speedup<br>**Amdahl's Law**: Theoretical maximum speedup limit",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "System Availability",
+          "japanese": "システム可用性",
+          "roomaji": "shisutemu kayou-sei",
+          "description": "**Formula**: Availability = MTBF / (MTBF + MTTR)<br>**Example**: MTBF=8760 hours, MTTR=4 hours → Availability = 8760/8764 = 99.95%<br>**Units**: Usually expressed as percentage (99.9%, 99.99%, etc.)",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "Network Throughput",
+          "japanese": "ネットワークスループット",
+          "roomaji": "netowaaku suruuputto",
+          "description": "**Formula**: Effective_Data = MTU - Headers<br>**Example**: Ethernet MTU=1500, TCP=20, IP=20, Ethernet=14 → Data = 1500-54 = 1446 bytes<br>**Efficiency**: (Useful data / Total packet size) × 100%",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "Storage Requirements",
+          "japanese": "ストレージ要件",
+          "roomaji": "sutooreeji youken",
+          "description": "**Formula**: Rows × (Fixed_fields + Variable_fields + Overhead)<br>**Example**: 1M customers, 200 bytes average → 200MB + indexes + overhead<br>**Factors**: Data types, NULL values, indexes, transaction logs",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "Index Size",
+          "japanese": "インデックスサイズ",
+          "roomaji": "indekkusu saizu",
+          "description": "**Formula**: Rows × (Key_size + Pointer_size)<br>**Example**: 1M rows, 4-byte key, 8-byte pointer → 12MB<br>**Multiple**: B-tree indexes are typically 2-3x this calculation",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "Query Performance",
+          "japanese": "クエリ性能",
+          "roomaji": "kueri seinou",
+          "description": "**Without Index**: O(n) - scan all rows<br>**With Index**: O(log n) - binary search<br>**Example**: 1M rows → No index: 1M checks, With index: ~20 checks",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "Subnet Calculations",
+          "japanese": "サブネット計算",
+          "roomaji": "sabunetто keisan",
+          "description": "**Hosts**: 2^(32-prefix) - 2<br>**Example**: /24 → 2^8 - 2 = 254 hosts<br>**Network**: IP AND Subnet_mask<br>**Broadcast**: Network OR NOT Subnet_mask",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "Bandwidth Utilization",
+          "japanese": "帯域使用率",
+          "roomaji": "taiiki shiyou-ritsu",
+          "description": "**Formula**: (Actual_throughput / Available_bandwidth) × 100%<br>**Example**: 80Mbps actual / 100Mbps available = 80% utilization<br>**Threshold**: Usually want <70% to avoid congestion",
+          "category": "Key Formulas & Calculations"
+        },
+        {
+          "english": "Packet Loss Rate",
+          "japanese": "パケット損失率",
+          "roomaji": "paketto sonshitsu-ritsu",
+          "description": "**Formula**: (Lost_packets / Total_packets) × 100%<br>**Example**: 50 lost / 10000 sent = 0.5% loss rate<br>**Acceptable**: <1% for most applications, <0.1% for VoIP",
+          "category": "Key Formulas & Calculations"
         }
       ]
     }
   ]
 }
-
-
