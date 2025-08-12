@@ -101,7 +101,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Memory Systems (メモリシステム)
 
-| English Term | Japanese | Romanji | Memory Details |
+| English Term | Japanese | Roomaji | Memory Details |
 |--------------|----------|---------|----------------|
 | Cache Memory | キャッシュメモリ | kyasshu memori | **Purpose**: High-speed buffer between CPU and main memory. **Principle**: Frequently used data stored in fast, small cache. **Hierarchy**: L1 (fastest, smallest) → L2 → L3 → Main Memory (slowest, largest). **Hit Rate**: Percentage of requests served from cache. |
 | Virtual Memory | 仮想メモリ | kasou memori | **Purpose**: Makes physical memory appear larger using disk storage. **Mechanism**: OS swaps unused pages to disk. **Benefits**: Programs can be larger than physical memory, memory protection between processes. **Page Fault**: When needed page not in memory. |
@@ -110,7 +110,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Parallel Processing (並列処理)
 
-| English Term | Japanese | Romanji | Parallel Details |
+| English Term | Japanese | Roomaji | Parallel Details |
 |--------------|----------|---------|-----------------|
 | Multiprocessor | マルチプロセッサ | maruchi purosessa | **Definition**: System with multiple CPUs working together. **Types**: Shared memory (SMP) vs Distributed memory (cluster). **Coordination**: Synchronization, communication between processors. **Challenges**: Load balancing, synchronization overhead. |
 | Speedup | 速度向上 | sokudo koujou | **Definition**: Performance improvement from parallelization. **Formula**: Speedup = Time_sequential / Time_parallel. **Ideal**: Linear speedup (2x processors = 2x speedup). **Reality**: Usually less due to overhead and sequential portions. |
@@ -119,7 +119,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### System Reliability (システム信頼性)
 
-| English Term | Japanese | Romanji | Reliability Details |
+| English Term | Japanese | Roomaji | Reliability Details |
 |--------------|----------|---------|-------------------|
 | MTBF (Mean Time Between Failures) | 平均故障間隔 | heikin koshhou kankaku | **Definition**: Average operating time between system failures. **Calculation**: MTBF = Total Operating Time / Number of Failures. **Example**: System runs 8760 hours with 2 failures → MTBF = 4380 hours. **Use**: Predicting maintenance schedules. |
 | MTTR (Mean Time To Repair) | 平均修理時間 | heikin shuuri jikan | **Definition**: Average time to restore system after failure. **Includes**: Detection time, repair time, testing time. **Factors**: Spare parts availability, technician skill, system complexity. **Goal**: Minimize MTTR through good design and procedures. |
@@ -130,7 +130,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Process Management (プロセス管理)
 
-| English Term | Japanese | Romanji | Process Details |
+| English Term | Japanese | Roomaji | Process Details |
 |--------------|----------|---------|-----------------|
 | Process | プロセス | purosesu | **Definition**: Program in execution with its own memory space. **Components**: Code, data, stack, heap, process control block (PCB). **vs Thread**: Process = heavy, isolated; Thread = light, shared memory. **Creation**: Fork (Unix), CreateProcess (Windows). |
 | Process State | プロセス状態 | purosesu joutai | **New**: Process being created. **Ready**: Waiting for CPU assignment. **Running**: Currently executing. **Waiting**: Blocked for I/O or event. **Terminated**: Execution completed. **Transitions**: Scheduler moves processes between states. |
@@ -141,7 +141,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Memory Management (メモリ管理)
 
-| English Term | Japanese | Romanji | Memory Details |
+| English Term | Japanese | Roomaji | Memory Details |
 |--------------|----------|---------|----------------|
 | Memory Allocation | メモリ割り当て | memori wari-ate | **Static**: Fixed size allocated at compile time. **Dynamic**: Variable size allocated at runtime (malloc/free). **Heap**: Dynamic memory region. **Stack**: Function call memory (automatic allocation/deallocation). |
 | Memory Protection | メモリ保護 | memori hogo | **Purpose**: Prevent processes from accessing each other's memory. **Mechanisms**: Base and bound registers, page tables with permissions. **Protection Bits**: Read, Write, Execute permissions. **Violation**: Segmentation fault, access violation. |
@@ -150,7 +150,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Real-Time Systems (リアルタイムシステム)
 
-| English Term | Japanese | Romanji | Real-Time Details |
+| English Term | Japanese | Roomaji | Real-Time Details |
 |--------------|----------|---------|------------------|
 | Real-Time System | リアルタイムシステム | riaru taimu shisutemu | **Definition**: System where correctness depends on both result and timing. **Examples**: Flight control, medical devices, industrial automation. **Constraints**: Must respond within specified deadlines. **Predictability**: More important than average performance. |
 | Hard Real-Time | ハードリアルタイム | haado riaru taimu | **Definition**: Missing deadline causes system failure. **Examples**: Anti-lock brakes, airbag deployment, nuclear reactor control. **Guarantee**: System must prove it will always meet deadlines. **Design**: Conservative resource allocation, deterministic behavior. |
@@ -161,7 +161,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Network Protocols (ネットワークプロトコル)
 
-| English Term | Japanese | Romanji | Protocol Details |
+| English Term | Japanese | Roomaji | Protocol Details |
 |--------------|----------|---------|-----------------|
 | TCP/IP | TCP/IP | TCP/IP | **Definition**: Internet protocol suite with 4 layers. **Reliability**: TCP provides reliable, ordered delivery. **Routing**: IP provides addressing and routing. **Ubiquity**: Foundation of internet communication. **Layers**: Application, Transport, Internet, Link. |
 | HTTP | HTTP | HTTP | **Purpose**: Web page transfer protocol. **Port**: 80 (HTTP), 443 (HTTPS). **Methods**: GET (retrieve), POST (send data), PUT (update), DELETE (remove). **Stateless**: Each request independent. **HTTPS**: HTTP over SSL/TLS for security. |
@@ -171,7 +171,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### IP Addressing & Subnetting (IPアドレス・サブネット)
 
-| English Term | Japanese | Romanji | Addressing Details |
+| English Term | Japanese | Roomaji | Addressing Details |
 |--------------|----------|---------|-------------------|
 | IPv4 Address | IPv4アドレス | IPv4 adoresu | **Format**: 32-bit address written as 4 octets (192.168.1.1). **Classes**: A (1-126), B (128-191), C (192-223). **Private**: 10.x.x.x, 172.16-31.x.x, 192.168.x.x. **Limitation**: Only 4.3 billion addresses. |
 | Subnet Mask | サブネットマスク | sabunetuto masuku | **Purpose**: Separates network and host portions of IP address. **Format**: 255.255.255.0 or /24 (CIDR notation). **Calculation**: Binary AND with IP address gives network address. **Example**: 192.168.1.5/24 → network 192.168.1.0, host 5. |
@@ -180,7 +180,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Routing (ルーティング)
 
-| English Term | Japanese | Romanji | Routing Details |
+| English Term | Japanese | Roomaji | Routing Details |
 |--------------|----------|---------|-----------------|
 | Routing Table | ルーティングテーブル | ruutingu teeburu | **Contents**: Destination network, next hop, interface, metric. **Lookup**: Find longest prefix match for destination. **Updates**: Static (manual) or dynamic (routing protocols). **Default Route**: 0.0.0.0/0 catches all unmatched destinations. |
 | Default Gateway | デフォルトゲートウェイ | deforutio geeto wei | **Purpose**: Router that forwards traffic to other networks. **Configuration**: Set in device's IP settings. **Function**: When destination not on local network, send to default gateway. **Example**: Home router is default gateway for devices. |
@@ -189,7 +189,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Data Transmission (データ転送)
 
-| English Term | Japanese | Romanji | Transmission Details |
+| English Term | Japanese | Roomaji | Transmission Details |
 |--------------|----------|---------|---------------------|
 | MTU (Maximum Transmission Unit) | 最大転送単位 | saidai tensou tan'i | **Definition**: Largest packet size that can be transmitted without fragmentation. **Ethernet**: 1500 bytes typical. **Discovery**: Path MTU discovery finds smallest MTU along route. **Fragmentation**: Large packets split into smaller pieces if MTU exceeded. |
 | Packet Fragmentation | パケット断片化 | paketto danpen-ka | **Need**: When packet larger than link MTU. **Process**: Split into fragments with fragment headers. **Reassembly**: Destination collects all fragments. **Problem**: Lost fragment = retransmit entire packet. **IPv6**: Source must do fragmentation. |
@@ -198,7 +198,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Email Systems (電子メール)
 
-| English Term | Japanese | Romanji | Email Details |
+| English Term | Japanese | Roomaji | Email Details |
 |--------------|----------|---------|---------------|
 | MIME | MIME | MIME | **Purpose**: Multipurpose Internet Mail Extensions for non-text content. **Encoding**: Base64 for binary data, Quoted-printable for text. **Headers**: Content-Type, Content-Encoding specify format. **Attachments**: Files encoded and embedded in email. |
 | Base64 Encoding | Base64符号化 | Base64 fugou-ka | **Purpose**: Convert binary data to text for email transmission. **Process**: 3 bytes → 4 ASCII characters. **Efficiency**: 25% size increase (4/3 ratio). **Example**: 30KB file → 40KB encoded. **Characters**: A-Z, a-z, 0-9, +, / (64 total). |
@@ -209,7 +209,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Database Design (データベース設計)
 
-| English Term | Japanese | Romanji | Database Details |
+| English Term | Japanese | Roomaji | Database Details |
 |--------------|----------|---------|------------------|
 | Entity-Relationship Model | エンティティ関係モデル | entiti kankei moderu | **Purpose**: Visual method for database design. **Components**: Entities (things), Attributes (properties), Relationships (connections). **Notation**: Rectangles = entities, Ovals = attributes, Diamonds = relationships. **Cardinality**: One-to-one, one-to-many, many-to-many relationships. |
 | Primary Key | 主キー | shu kii | **Definition**: Unique identifier for each row in table. **Properties**: Cannot be NULL, cannot duplicate, should not change. **Purpose**: Ensures entity integrity, used in relationships. **Example**: StudentID in Students table, OrderID in Orders table. |
@@ -218,7 +218,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Normalization (正規化)
 
-| English Term | Japanese | Romanji | Normalization Details |
+| English Term | Japanese | Roomaji | Normalization Details |
 |--------------|----------|---------|----------------------|
 | First Normal Form (1NF) | 第一正規形 | dai-ichi seiki-kei | **Rule**: Eliminate repeating groups, each cell contains single value. **Problem**: Multiple values in one field. **Solution**: Create separate rows for each value. **Example**: Instead of "Skills: Java, Python, C++" use separate rows for each skill. |
 | Second Normal Form (2NF) | 第二正規形 | dai-ni seiki-kei | **Rule**: Must be 1NF + eliminate partial dependencies. **Problem**: Non-key attributes depend on part of composite key. **Solution**: Split table to remove partial dependencies. **Example**: If (StudentID, CourseID) → Grade, but CourseID → CourseName, move CourseName to separate table. |
@@ -227,7 +227,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### SQL Operations (SQL操作)
 
-| English Term | Japanese | Romanji | SQL Details |
+| English Term | Japanese | Roomaji | SQL Details |
 |--------------|----------|---------|-------------|
 | DDL (Data Definition Language) | データ定義言語 | deeta teigi gen-go | **Commands**: CREATE, ALTER, DROP. **Purpose**: Define database structure. **CREATE**: Make new tables, indexes, views. **ALTER**: Modify existing structure. **DROP**: Delete database objects. **Permissions**: Usually require administrator privileges. |
 | DML (Data Manipulation Language) | データ操作言語 | deeta sousa gen-go | **Commands**: SELECT, INSERT, UPDATE, DELETE. **Purpose**: Manipulate data within tables. **SELECT**: Query data. **INSERT**: Add new rows. **UPDATE**: Modify existing rows. **DELETE**: Remove rows. **Transactions**: Changes can be rolled back. |
@@ -237,7 +237,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Database Performance (データベース性能)
 
-| English Term | Japanese | Romanji | Performance Details |
+| English Term | Japanese | Roomaji | Performance Details |
 |--------------|----------|---------|-------------------|
 | Index | インデックス | indekkusu | **Purpose**: Speed up queries by creating sorted reference to data. **Types**: B-tree (balanced), Hash (exact match), Bitmap (low cardinality). **Trade-off**: Faster SELECT, slower INSERT/UPDATE/DELETE. **Clustering**: Physical order matches index order. |
 | Query Optimization | クエリ最適化 | kueri saiteki-ka | **Purpose**: Find most efficient execution plan. **Optimizer**: Database engine component that chooses plan. **Factors**: Available indexes, table statistics, join order. **Hints**: Manual suggestions to optimizer (use carefully). |
@@ -248,7 +248,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Development Methodologies (開発手法)
 
-| English Term | Japanese | Romanji | Methodology Details |
+| English Term | Japanese | Roomaji | Methodology Details |
 |--------------|----------|---------|-------------------|
 | Waterfall Model | ウォーターフォールモデル | wootaa fooru moderu | **Process**: Sequential phases: Requirements → Design → Implementation → Testing → Maintenance. **Advantage**: Clear structure, easy to manage. **Disadvantage**: Inflexible to changes, late feedback. **Use**: Stable requirements, regulated industries. |
 | Agile Development | アジャイル開発 | ajairu kaihatsu | **Principles**: Individuals over processes, working software over documentation, customer collaboration, responding to change. **Iterations**: Short cycles (1-4 weeks). **Benefits**: Flexible, early feedback, continuous improvement. **Frameworks**: Scrum, Kanban, XP. |
@@ -257,7 +257,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Software Quality (ソフトウェア品質)
 
-| English Term | Japanese | Romanji | Quality Details |
+| English Term | Japanese | Roomaji | Quality Details |
 |--------------|----------|---------|-----------------|
 | Software Metrics | ソフトウェア指標 | sofuto wea shihyou | **Code Metrics**: Lines of code, cyclomatic complexity, coupling, cohesion. **Process Metrics**: Defect density, test coverage, velocity. **Purpose**: Measure quality, predict problems, track improvement. **KLOC**: Thousand Lines of Code (common unit). |
 | Defect Density | 欠陥密度 | kekkan mitsudo | **Formula**: Defects / KLOC (thousand lines of code). **Benchmark**: <1 defect/KLOC = good quality. **Tracking**: Monitor throughout development lifecycle. **Types**: Syntax errors, logic errors, integration errors, performance issues. |
@@ -266,7 +266,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Testing (テスト)
 
-| English Term | Japanese | Romanji | Testing Details |
+| English Term | Japanese | Roomaji | Testing Details |
 |--------------|----------|---------|-----------------|
 | Unit Testing | 単体テスト | tantai tesuto | **Scope**: Individual components/functions in isolation. **Tools**: JUnit (Java), NUnit (.NET), pytest (Python). **Mocking**: Replace dependencies with controlled substitutes. **Benefits**: Fast feedback, regression prevention, documentation. |
 | Integration Testing | 結合テスト | ketsu-gou tesuto | **Scope**: Test component interactions. **Types**: Big Bang (all at once), Incremental (gradual), Top-down, Bottom-up. **Challenges**: Interface problems, data format issues, timing problems. **Environment**: Often requires test databases, external services. |
@@ -276,7 +276,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Project Management (プロジェクト管理)
 
-| English Term | Japanese | Romanji | Project Details |
+| English Term | Japanese | Roomaji | Project Details |
 |--------------|----------|---------|-----------------|
 | PERT Chart | PERT図 | PERT-zu | **Purpose**: Project scheduling using network diagram. **Components**: Activities (arrows), events (nodes), dependencies. **Critical Path**: Longest path through network (determines minimum project time). **Float**: Extra time available for non-critical activities. |
 | Critical Path Method (CPM) | クリティカルパス法 | kuritikaru pasu-hou | **Definition**: Sequence of activities that determines minimum project duration. **Calculation**: Forward pass (earliest start/finish), backward pass (latest start/finish). **Float**: Difference between latest and earliest times. **Management**: Focus resources on critical path activities. |
@@ -287,7 +287,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Cryptography & PKI (暗号化・PKI)
 
-| English Term | Japanese | Romanji | Cryptography Details |
+| English Term | Japanese | Roomaji | Cryptography Details |
 |--------------|----------|---------|---------------------|
 | Encryption | 暗号化 | angou-ka | **Purpose**: Convert plaintext to ciphertext to protect confidentiality. **Types**: Symmetric (same key), Asymmetric (public/private keys). **Algorithms**: AES (symmetric), RSA (asymmetric). **Strength**: Key length determines difficulty to break. |
 | Digital Certificate | デジタル証明書 | dejitaru shoumei-sho | **Purpose**: Electronic credential that proves identity. **Contents**: Public key, owner identity, issuer signature, validity period. **CA**: Certificate Authority issues and signs certificates. **Chain**: Certificates form trust chain to root CA. |
@@ -296,7 +296,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Network Security (ネットワークセキュリティ)
 
-| English Term | Japanese | Romanji | Security Details |
+| English Term | Japanese | Roomaji | Security Details |
 |--------------|----------|---------|------------------|
 | Firewall | ファイアウォール | faia wooru | **Purpose**: Control network traffic based on security rules. **Types**: Packet filter, stateful inspection, application-level gateway. **Rules**: Allow/deny based on IP, port, protocol, application. **DMZ**: Demilitarized zone for public-facing services. |
 | VPN (Virtual Private Network) | 仮想プライベートネットワーク | kasou puraibeetо netowaaku | **Purpose**: Secure connection over public network. **Protocols**: IPsec (network layer), L2TP (data link), SSL/TLS (application). **Benefits**: Encryption, authentication, access to private resources. **Types**: Site-to-site, remote access. |
@@ -305,7 +305,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Web Security (Webセキュリティ)
 
-| English Term | Japanese | Romanji | Web Security Details |
+| English Term | Japanese | Roomaji | Web Security Details |
 |--------------|----------|---------|---------------------|
 | SQL Injection | SQLインジェクション | SQL injekushon | **Attack**: Insert malicious SQL code into application inputs. **Example**: Login with username "admin'--" bypasses password check. **Prevention**: Parameterized queries, input validation, least privilege. **Impact**: Data theft, modification, deletion. |
 | XSS (Cross-Site Scripting) | クロスサイトスクリプティング | kurosu saito sukuriputingu | **Attack**: Inject malicious scripts into web pages viewed by other users. **Types**: Stored (persistent), Reflected (non-persistent), DOM-based. **Prevention**: Input validation, output encoding, Content Security Policy. **Impact**: Session hijacking, defacement, malware. |
@@ -314,7 +314,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Authentication & Authorization (認証・認可)
 
-| English Term | Japanese | Romanji | Auth Details |
+| English Term | Japanese | Roomaji | Auth Details |
 |--------------|----------|---------|--------------|
 | Authentication | 認証 | ninshou | **Definition**: Verify user identity. **Factors**: Something you know (password), have (token), are (biometric). **Multi-factor**: Combine multiple factors for stronger security. **Methods**: Username/password, certificates, biometrics, tokens. |
 | Authorization | 認可 | ninka | **Definition**: Determine what authenticated user can access. **Models**: Discretionary (DAC), Mandatory (MAC), Role-based (RBAC). **Principle**: Least privilege - minimum necessary permissions. **Implementation**: Access control lists, capabilities. |
@@ -325,7 +325,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Service Level Management (サービスレベル管理)
 
-| English Term | Japanese | Romanji | SLA Details |
+| English Term | Japanese | Roomaji | SLA Details |
 |--------------|----------|---------|-------------|
 | SLA (Service Level Agreement) | サービスレベル合意書 | saabisu reberu goui-sho | **Definition**: Contract defining expected service performance. **Metrics**: Availability, response time, throughput, error rate. **Penalties**: Financial consequences for not meeting SLA. **Review**: Regular monitoring and reporting of SLA compliance. |
 | Uptime | 稼働時間 | kadou jikan | **Definition**: Time system is operational and available. **Measurement**: Usually percentage (99.9% = 8.76 hours downtime/year). **Calculation**: (Total time - Downtime) / Total time. **Industry**: Cloud providers often guarantee 99.95%+ uptime. |
@@ -334,7 +334,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Cloud Computing (クラウドコンピューティング)
 
-| English Term | Japanese | Romanji | Cloud Details |
+| English Term | Japanese | Roomaji | Cloud Details |
 |--------------|----------|---------|---------------|
 | IaaS (Infrastructure as a Service) | IaaS | IaaS | **Definition**: Virtualized computing resources over internet. **Includes**: Virtual machines, storage, networks, load balancers. **Examples**: AWS EC2, Azure VMs, Google Compute Engine. **Benefits**: Scalability, no hardware management, pay-per-use. |
 | PaaS (Platform as a Service) | PaaS | PaaS | **Definition**: Platform for developing, running applications. **Includes**: Runtime environment, development tools, databases. **Examples**: Google App Engine, Heroku, Azure App Service. **Benefits**: Faster development, automatic scaling, managed infrastructure. |
@@ -343,7 +343,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Business Models (ビジネスモデル)
 
-| English Term | Japanese | Romanji | Business Details |
+| English Term | Japanese | Roomaji | Business Details |
 |--------------|----------|---------|------------------|
 | Freemium | フリーミアム | furiimiamu | **Model**: Basic features free, premium features paid. **Strategy**: Attract users with free tier, convert to paid. **Examples**: Spotify, Dropbox, LinkedIn. **Metrics**: Conversion rate from free to paid users. |
 | Subscription | サブスクリプション | sabusukuripushon | **Model**: Recurring payment for continued access. **Benefits**: Predictable revenue, customer retention focus. **Examples**: Netflix, Adobe Creative Cloud, SaaS applications. **Challenges**: Customer churn, acquisition cost. |
@@ -352,7 +352,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Cost Analysis (コスト分析)
 
-| English Term | Japanese | Romanji | Cost Details |
+| English Term | Japanese | Roomaji | Cost Details |
 |--------------|----------|---------|--------------|
 | Activity-Based Costing (ABC) | 活動基準原価計算 | katsudou kijun genka keisan | **Method**: Assign costs to activities, then to products based on activity usage. **Steps**: Identify activities, assign costs to activities, identify cost drivers, calculate rates. **Benefits**: More accurate product costs, better decision making. |
 | Total Cost of Ownership (TCO) | 総所有コスト | sou shoyuu kosuto | **Definition**: All costs associated with owning/operating system over its lifetime. **Components**: Purchase, implementation, training, maintenance, support, upgrades. **Purpose**: Compare alternatives, budget planning. **Hidden Costs**: Often underestimated. |
@@ -363,7 +363,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Performance Calculations (性能計算)
 
-| Formula Name | Japanese | Romanji | Formula & Example |
+| Formula Name | Japanese | Roomaji | Formula & Example |
 |--------------|----------|---------|-------------------|
 | CPU Processing Time | CPU処理時間 | CPU shori jikan | **Formula**: Time = (Instructions × CPI) / Clock_Frequency<br>**Example**: 1M instructions, CPI=2, 1GHz → Time = (1M × 2) / 1G = 2ms<br>**Units**: Instructions (count), CPI (cycles/instruction), Frequency (Hz), Time (seconds) |
 | Parallel Processing Efficiency | 並列処理効率 | heiretsu shori kouritu | **Formula**: E = 1/(1-r+r/n)<br>**Variables**: r = parallelizable fraction (0-1), n = number of processors<br>**Example**: 90% parallelizable, 3 processors → E = 1/(0.1+0.9/3) = 2.31x speedup<br>**Amdahl's Law**: Theoretical maximum speedup limit |
@@ -372,7 +372,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Database Calculations (データベース計算)
 
-| Calculation Type | Japanese | Romanji | Calculation Details |
+| Calculation Type | Japanese | Roomaji | Calculation Details |
 |------------------|----------|---------|-------------------|
 | Storage Requirements | ストレージ要件 | sutooreeji youken | **Formula**: Rows × (Fixed_fields + Variable_fields + Overhead)<br>**Example**: 1M customers, 200 bytes average → 200MB + indexes + overhead<br>**Factors**: Data types, NULL values, indexes, transaction logs |
 | Index Size | インデックスサイズ | indekkusu saizu | **Formula**: Rows × (Key_size + Pointer_size)<br>**Example**: 1M rows, 4-byte key, 8-byte pointer → 12MB<br>**Multiple**: B-tree indexes are typically 2-3x this calculation |
@@ -380,7 +380,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 
 ### Network Calculations (ネットワーク計算)
 
-| Calculation Type | Japanese | Romanji | Network Details |
+| Calculation Type | Japanese | Roomaji | Network Details |
 |------------------|----------|---------|-----------------|
 | Subnet Calculations | サブネット計算 | sabunetто keisan | **Hosts**: 2^(32-prefix) - 2<br>**Example**: /24 → 2^8 - 2 = 254 hosts<br>**Network**: IP AND Subnet_mask<br>**Broadcast**: Network OR NOT Subnet_mask |
 | Bandwidth Utilization | 帯域使用率 | taiiki shiyou-ritsu | **Formula**: (Actual_throughput / Available_bandwidth) × 100%<br>**Example**: 80Mbps actual / 100Mbps available = 80% utilization<br>**Threshold**: Usually want <70% to avoid congestion |
@@ -391,7 +391,7 @@ This guide provides comprehensive vocabulary and concept explanations in table f
 **Study Completion Notes:**
 - **Total Terms Covered**: 200+ technical terms with detailed explanations
 - **Format Benefits**: Table format allows quick lookup and comparison
-- **Language Support**: English, Japanese, and Romanji for pronunciation
+- **Language Support**: English, Japanese, and Roomaji for pronunciation
 - **Beginner Focus**: Detailed explanations assume no prior knowledge
 - **Practical Examples**: Real-world calculations and scenarios throughout
 
