@@ -32,7 +32,12 @@ const els = {
   stats: document.getElementById('stats'),
   loading: document.getElementById('loading'),
   results: document.getElementById('results'),
-  pager: document.getElementById('pager')
+  pager: document.getElementById('pager'),
+  modal: document.getElementById('modal'),
+  modalBody: document.getElementById('modalBody'),
+  modalCloseBtn: document.getElementById('modalCloseBtn'),
+  modalNextBtn: document.getElementById('modalNextBtn'),
+  modalBackdrop: document.getElementById('modalBackdrop')
 };
 
 const loader = new DataLoader('./');
@@ -232,11 +237,57 @@ async function init() {
   // bind events
   els.q.addEventListener('input', debounce((e) => { state.query = e.target.value; savePrefs(); applyFilters(); }, 300));
   els.exportBtn.addEventListener('click', () => exportCSV(state.filtered));
-  els.randomBtn.addEventListener('click', () => {
+  const openModalWith = (it) => {
+    const cardHtml = `
+      <article class="card">
+        <div class="card__head">
+          <div class="term-en">${it.english}</div>
+          <span class="tag">${it._examLabel}</span>
+        </div>
+        <div class="term-ja">${it.japanese}</div>
+        <div class="term-ro">${it.roomaji}</div>
+        <div class="desc">${it.description.replace(/\*\*(.+?)\*\*/g,'<br/><strong>$1</strong>').replace(/^<br\/>/,'')}</div>
+        <div class="card__foot">
+          <button class="fav" data-id="${it._id}" data-active="${state.favorites.has(it._id)}">${state.favorites.has(it._id)?'⭐':'☆'} Favorite</button>
+          <span class="tag">${it.category}</span>
+        </div>
+      </article>`;
+    els.modalBody.innerHTML = cardHtml;
+    els.modal.classList.remove('hidden');
+    els.modal.setAttribute('aria-hidden', 'false');
+    // bind favorite inside modal
+    const fav = els.modalBody.querySelector('.fav');
+    fav.addEventListener('click', () => {
+      const id = fav.getAttribute('data-id');
+      if (state.favorites.has(id)) state.favorites.delete(id); else state.favorites.add(id);
+      fav.setAttribute('data-active', String(state.favorites.has(id)));
+      fav.textContent = (state.favorites.has(id)?'⭐':'☆') + ' Favorite';
+      savePrefs();
+    });
+  };
+
+  const pickRandom = () => {
     const arr = state.filtered.length ? state.filtered : state.indexed;
-    if (!arr.length) return;
-    const it = arr[Math.floor(Math.random()*arr.length)];
-    alert(`${it.english} — ${it.japanese} (${it.roomaji})\n${it.category}\n\n${it.description}`);
+    if (!arr.length) return null;
+    return arr[Math.floor(Math.random()*arr.length)];
+  };
+
+  els.randomBtn.addEventListener('click', () => {
+    const it = pickRandom();
+    if (!it) return;
+    openModalWith(it);
+  });
+
+  const closeModal = () => {
+    els.modal.classList.add('hidden');
+    els.modal.setAttribute('aria-hidden', 'true');
+  };
+  els.modalCloseBtn.addEventListener('click', closeModal);
+  els.modalBackdrop.addEventListener('click', closeModal);
+  els.modalNextBtn.addEventListener('click', () => {
+    const it = pickRandom();
+    if (!it) return;
+    openModalWith(it);
   });
   els.sessionSelect.value = state.session;
   els.sessionSelect.addEventListener('change', (e)=>{ state.session = e.target.value; savePrefs(); buildExamList(); updateCrumbs(); refreshData();});

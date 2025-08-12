@@ -75,6 +75,18 @@
         <nav id="pager" class="pagination hidden" aria-label="Pagination"></nav>
       </main>
 
+      <!-- Modal for Random Term / Detail View -->
+      <div id="modal" class="modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal__backdrop" id="modalBackdrop"></div>
+        <div class="modal__content" role="document">
+          <div class="modal__body" id="modalBody"><!-- term card will be injected here --></div>
+          <div class="modal__actions">
+            <button id="modalCloseBtn" class="btn">Close</button>
+            <button id="modalNextBtn" class="btn btn--primary">Next Random</button>
+          </div>
+        </div>
+      </div>
+
       <footer class="footer">
         <small>Tip: Press <kbd>/</kbd> to focus search, <kbd>Esc</kbd> to clear • Preferences are saved locally</small>
       </footer>
