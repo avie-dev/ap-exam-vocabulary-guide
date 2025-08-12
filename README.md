@@ -23,6 +23,8 @@ The AP exam is entirely in Japanese and covers advanced IT topics with complex t
 | [Spring 2025 AM (令和7年度 春期 午前)](./guides/am/ap-2025-spring.md) | April 2025 | Complete AM Study Guide | ✅ Available |
 | Fall 2025 (令和7年度 秋期) | October 2025 | Study Guide | 📝 Planned |
 
+> Looking for an interactive, multi-year vocabulary search? Open the modular system in `vocabulary-system/` — see [Vocabulary System README](./vocabulary-system/README.md) for how to run it locally.
+
 ### Previous Years Coverage
 - **2024**: Spring & Fall sessions (📝 Planned)
 - **2023**: Spring & Fall sessions (📝 Planned)  
